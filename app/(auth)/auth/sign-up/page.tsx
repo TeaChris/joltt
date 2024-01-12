@@ -1,24 +1,19 @@
 'use client'
 
-import { useState, useTransition } from 'react'
-
-import * as z from 'zod'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { AuthCredentialsValidator, TAuthCredentialsValidator } from '@/schemas'
-
-import { cn } from '@/lib/utils'
-
-import { ArrowRight, Loader2 } from 'lucide-react'
-
-import { toast } from 'sonner'
-
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-
+import { cn } from '@/lib/utils'
+import { ArrowRight, Loader2 } from 'lucide-react'
 import Link from 'next/link'
-import { signIn } from '@/actions/sign-in'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { AuthCredentialsCreation, TAuthCredentialsCreation } from '@/schemas'
+import { ZodError } from 'zod'
+import { toast } from 'sonner'
+import { useRouter } from 'next/navigation'
+import { useTransition } from 'react'
+import { signUp } from '@/actions/sign-up'
 
 export default function Page() {
   const [isPending, startTransition] = useTransition()
@@ -27,14 +22,14 @@ export default function Page() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<TAuthCredentialsValidator>({
-    resolver: zodResolver(AuthCredentialsValidator),
+  } = useForm<TAuthCredentialsCreation>({
+    resolver: zodResolver(AuthCredentialsCreation),
   })
 
-  const onSubmit = (values: TAuthCredentialsValidator) => {
+  const onSubmit = (values: TAuthCredentialsCreation) => {
     startTransition: {
-      signIn(values).then((data)=>{
-        toast.error(data.error);
+      signUp(values).then((data) => {
+        toast.error(data.error)
         toast.success(data.success)
       })
     }
@@ -47,23 +42,32 @@ export default function Page() {
           <div className="flex flex-col items-center space-y-2 text-center">
             <div className="text-2xl font-extrabold text-primary">jolt.</div>
             <h1 className="text-2xl font-semibold tracking-tight">
-              Sign in to your account
+              Create an account
             </h1>
-            <Link
-              className={buttonVariants({
-                variant: 'link',
-                className: 'gap-1.5',
-              })}
-              href="/auth/sign-up"
-            >
-              Don&apos;t have and account? Sign-up
-              <ArrowRight className="h-4 w-4" />
-            </Link>
           </div>
 
           <div className="grid gap-6">
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="grid gap-2">
+                {/* name */}
+                <div className="grid gap-1 py-2">
+                  <Label htmlFor="email">Name</Label>
+                  <Input
+                    {...register('name')}
+                    className={cn({
+                      'focus-visible:ring-red-500': errors.name,
+                    })}
+                    placeholder="User"
+                    disabled={isPending}
+                  />
+                  {errors?.name && (
+                    <p className="text-sm text-red-500">
+                      {errors.name.message}
+                    </p>
+                  )}
+                </div>
+
+                {/* email */}
                 <div className="grid gap-1 py-2">
                   <Label htmlFor="email">Email</Label>
                   <Input
@@ -83,7 +87,7 @@ export default function Page() {
 
                 {/* password */}
                 <div className="grid gap-1 py-2">
-                  <Label htmlFor="email">Password</Label>
+                  <Label htmlFor="password">Password</Label>
                   <Input
                     {...register('password')}
                     type="password"
@@ -99,18 +103,28 @@ export default function Page() {
                     </p>
                   )}
                 </div>
-                <Button disabled={isPending} type="submit">
+                <Button disabled={isPending}>
                   {isPending && (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Signing in...
+                      Creating account...
                     </>
                   )}
-                  Sign in
+                  Create account
                 </Button>
               </div>
             </form>
           </div>
+          <Link
+            className={buttonVariants({
+              variant: 'link',
+              className: 'gap-1.5',
+            })}
+            href="/sign-in"
+          >
+            Already have an account? Sign-in
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </div>
     </>

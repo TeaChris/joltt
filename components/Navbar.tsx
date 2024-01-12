@@ -65,7 +65,7 @@ export function Navbar() {
                     </>
                   ) : (
                     <Link
-                      href="/sign-up"
+                      href="/auth/sign-up"
                       className={buttonVariants({
                         variant: 'ghost',
                       })}
