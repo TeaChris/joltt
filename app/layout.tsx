@@ -5,6 +5,7 @@ import '@/styles/globals.css'
 import { cn } from '@/lib/utils'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
+import { Toaster } from 'sonner'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -28,6 +29,7 @@ export default function RootLayout({
           <div className="flex-grow flex-1"> {children}</div>
           <Footer />
         </main>
+        <Toaster richColors position="top-center" />
       </body>
     </html>
   )

@@ -9,9 +9,7 @@ import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AuthCredentialsCreation, TAuthCredentialsCreation } from '@/schemas'
-import { ZodError } from 'zod'
 import { toast } from 'sonner'
-import { useRouter } from 'next/navigation'
 import { useTransition } from 'react'
 import { signUp } from '@/actions/sign-up'
 
@@ -19,6 +17,7 @@ export default function Page() {
   const [isPending, startTransition] = useTransition()
 
   const {
+    reset,
     register,
     handleSubmit,
     formState: { errors },
@@ -27,12 +26,17 @@ export default function Page() {
   })
 
   const onSubmit = (values: TAuthCredentialsCreation) => {
-    startTransition: {
+    startTransition(() => {
       signUp(values).then((data) => {
-        toast.error(data.error)
-        toast.success(data.success)
+        if (data.error) {
+          toast.error(data.error)
+        } else {
+          toast.success(data.success)
+        }
       })
-    }
+    })
+
+    reset()
   }
 
   return (
@@ -114,13 +118,14 @@ export default function Page() {
                   )}
                 </div>
                 <Button disabled={isPending}>
-                  {isPending && (
+                  {isPending ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                       Creating account...
                     </>
+                  ) : (
+                    <>Create account</>
                   )}
-                  Create account
                 </Button>
               </div>
             </form>
