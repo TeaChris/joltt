@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 export function Footer() {
   const pathname = usePathname()
-  const pathsToMinimize = ['/verify-email', '/sign-up', '/sign-in']
+  const pathsToMinimize = ['/verify-email', '/auth/sign-up', '/auth/sign-in']
 
   return (
     <footer className="bg-white flex-grow-0">
