@@ -44,6 +44,16 @@ export default function Page() {
             <h1 className="text-2xl font-semibold tracking-tight">
               Create an account
             </h1>
+            <Link
+              className={buttonVariants({
+                variant: 'link',
+                className: 'gap-1.5',
+              })}
+              href="/auth/sign-in"
+            >
+              Already have an account? Sign-in
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
 
           <div className="grid gap-6">
@@ -115,16 +125,6 @@ export default function Page() {
               </div>
             </form>
           </div>
-          <Link
-            className={buttonVariants({
-              variant: 'link',
-              className: 'gap-1.5',
-            })}
-            href="/sign-in"
-          >
-            Already have an account? Sign-in
-            <ArrowRight className="h-4 w-4" />
-          </Link>
         </div>
       </div>
     </>
