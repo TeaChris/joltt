@@ -11,6 +11,7 @@ import {
   DropdownMenuTrigger,
 } from './ui/dropdown-menu'
 import Link from 'next/link'
+import { logOut } from '@/actions/sign-out'
 
 interface Props {
   user?: ExtendedUser
@@ -18,6 +19,10 @@ interface Props {
 
 export default function UserAccountNav(props: Props) {
   const { user } = props
+
+  const onClick = () => {
+    logOut()
+  }
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="overflow-visible">
@@ -39,7 +44,7 @@ export default function UserAccountNav(props: Props) {
           <Link href="/dashboard">Dashboard</Link>
         </DropdownMenuItem>
 
-        <DropdownMenuItem className="cursor-pointer">Log out</DropdownMenuItem>
+        <DropdownMenuItem onClick={onClick} className="cursor-pointer">Log out</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )
