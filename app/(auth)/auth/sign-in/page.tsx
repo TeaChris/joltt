@@ -18,12 +18,13 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
 import Link from 'next/link'
-import { signIn } from '@/actions/sign-in'
+import { logIn } from '@/actions/sign-in'
 
 export default function Page() {
   const [isPending, startTransition] = useTransition()
 
   const {
+    reset,
     register,
     handleSubmit,
     formState: { errors },
@@ -32,12 +33,18 @@ export default function Page() {
   })
 
   const onSubmit = (values: TAuthCredentialsValidator) => {
-    startTransition: {
-      signIn(values).then((data)=>{
-        toast.error(data.error);
-        toast.success(data.success)
+    startTransition(() => {
+      logIn(values).then((data) => {
+        if (data?.error) {
+          toast.error(data.error)
+          reset()
+        }
+        if (data?.success) {
+          toast.success(data.success)
+          reset()
+        }
       })
-    }
+    })
   }
 
   return (
@@ -100,13 +107,14 @@ export default function Page() {
                   )}
                 </div>
                 <Button disabled={isPending} type="submit">
-                  {isPending && (
+                  {isPending ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                       Signing in...
                     </>
+                  ) : (
+                    <>Sign in</>
                   )}
-                  Sign in
                 </Button>
               </div>
             </form>
