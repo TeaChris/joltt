@@ -3,6 +3,7 @@ import { MaxWidthWrapper } from './MaxWidthWrapper'
 import { buttonVariants } from './ui/button'
 import { Cart } from './Cart'
 import UserAccountNav from './UserAccountNav'
+import { currentUser } from '@/lib/auth'
 
 const nav = [
   {
@@ -11,8 +12,8 @@ const nav = [
   },
 ]
 
-export function Navbar() {
-  const user = false
+export async function Navbar() {
+  const user = await currentUser()
   return (
     <div className="bg-white sticky z-50 top-0 inset-x-0 h-16">
       <header className="relative bg-white">
@@ -61,7 +62,7 @@ export function Navbar() {
 
                   {user ? (
                     <>
-                      <UserAccountNav />
+                      <UserAccountNav user={user} />
                     </>
                   ) : (
                     <Link
