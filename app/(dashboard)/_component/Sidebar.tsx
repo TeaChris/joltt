@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { SidebarRoutes } from './SidebarRoutes'
 
 export function Sidebar() {
   return (
@@ -9,7 +10,7 @@ export function Sidebar() {
         </Link>
       </div>
       <div className="flex flex-col w-full">
-        {/* TODO: ADDED SIDEBAR ROUTES */}
+        <SidebarRoutes />
       </div>
     </aside>
   )
