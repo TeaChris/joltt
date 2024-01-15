@@ -65,7 +65,7 @@ export default function Page() {
               <div className="grid gap-2">
                 {/* name */}
                 <div className="grid gap-1 py-2">
-                  <Label htmlFor="email">Name</Label>
+                  <Label htmlFor="name">Name</Label>
                   <Input
                     {...register('name')}
                     className={cn({
