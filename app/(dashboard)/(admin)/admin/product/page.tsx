@@ -42,7 +42,10 @@ export default function AdmibDashboard() {
                 {/* product  size*/}
                 <div className="grid gap-1 py-2">
                   <Label htmlFor="name">Product size</Label>
-                  <Input className={cn({})} placeholder="price in USD" />
+                  <Input
+                    className={cn({})}
+                    placeholder="Product size 'eg: size 45'"
+                  />
                   {<p className="text-sm text-red-500"></p>}
                 </div>
 
@@ -61,7 +64,7 @@ export default function AdmibDashboard() {
                   <Label htmlFor="description">Product category</Label>
                   <Input
                     className={cn({})}
-                    placeholder="Quality top from amazing ladies"
+                    placeholder="Select a category best fit for you product"
                   />
                   {<p className="text-sm text-red-500"></p>}
                 </div>
