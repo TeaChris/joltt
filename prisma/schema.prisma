@@ -3,6 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
@@ -26,3 +27,27 @@ model User {
   isTwoFactorEnabled        Boolean @default(false)
 }
 
+model Products {
+  id              String @id @default(uuid()) @map("_id")
+  name              String
+  description       String
+  price             Float
+  stock             Int
+  imageUrl          String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  categoryId      String
+  category        Category? @relation(fields: [categoryId], references: [id])
+
+  isPublished     Boolean @default(false)
+
+  @@index([categoryId])
+  @@fulltext([name])
+}
+
+model Category {
+  id         String @id @default(uuid()) @map("_id")
+  name       String
+  Products    Products[]
+}
