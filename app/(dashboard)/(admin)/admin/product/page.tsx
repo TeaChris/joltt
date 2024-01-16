@@ -1,11 +1,11 @@
-import { currentUser } from '@/lib/auth'
+import { currentUserId } from '@/lib/auth'
 import { ProductForm } from './_component/form'
 import { redirect } from 'next/navigation'
 
 export default async function AdmibDashboard() {
-  const user = await currentUser()
+  const userId = await currentUserId()
 
-  if (!user) {
+  if (!userId) {
     return redirect('/auth/sign-in')
   }
 

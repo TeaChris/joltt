@@ -28,7 +28,8 @@ model User {
 }
 
 model Products {
-  id              String @id @default(uuid()) @map("_id")
+  id                String @id @default(uuid()) @map("_id")
+  userId            String
   name              String
   description       String
   price             Float
@@ -37,10 +38,10 @@ model Products {
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 
-  categoryId      String
-  category        Category? @relation(fields: [categoryId], references: [id])
+  categoryId        String
+  category          Category? @relation(fields: [categoryId], references: [id])
 
-  isPublished     Boolean @default(false)
+  isPublished       Boolean @default(false)
 
   @@index([categoryId])
   @@fulltext([name])
