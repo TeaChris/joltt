@@ -4,7 +4,7 @@ interface ComboProps {
   options: { label: string; value: string }[]
 }
 
-export function Combo({ options }: ComboProps) {
+export default function Combo({ options }: ComboProps) {
   return (
     <Combobox
       onChange={function (value: string): void {

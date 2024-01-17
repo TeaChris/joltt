@@ -13,14 +13,17 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 import { ProductSchemaValidator, TProductSchemaValidator } from '@/schemas'
-import { Combo } from './Combo'
+import { useTransition } from 'react'
+import { createProduct } from '@/actions/create-product'
+import { toast } from 'sonner'
+import { Combobox } from '@/components/ui/combobox'
 
 interface Props {
   options: { label: string; value: string }[]
 }
 
 export function ProductForm({ options }: Props) {
-  const isPending = false
+  const [isPending, startTransition] = useTransition()
 
   const {
     reset,
@@ -31,7 +34,17 @@ export function ProductForm({ options }: Props) {
     resolver: zodResolver(ProductSchemaValidator),
   })
 
-  const onSubmit = (values: TProductSchemaValidator) => {}
+  const onSubmit = (values: TProductSchemaValidator) => {
+    startTransition(() => {
+      createProduct(values).then((data) => {
+        if (data.success) {
+          toast.success(data.success)
+        } else {
+          toast.error(data.error)
+        }
+      })
+    })
+  }
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="grid gap-2">
@@ -90,7 +103,8 @@ export function ProductForm({ options }: Props) {
         {/* product  category*/}
         <div className="grid gap-1 py-2">
           <Label htmlFor="description">Product category</Label>
-          <Combo options={options} />
+          {/* @ts-ignore */}
+          <Combobox options={options} {...register('categoryId')} />
           {errors?.categoryId && (
             <p className="text-sm text-red-500">{errors.categoryId.message}</p>
           )}

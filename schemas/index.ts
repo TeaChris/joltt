@@ -23,12 +23,14 @@ export const AuthCredentialsCreation = z.object({
 // product schema
 export const ProductSchemaValidator = z.object({
   name: z.string().min(5, {
-    message: 'name is required',
+    message: 'Produuct name is required',
   }),
   price: z.coerce.number(),
-  size: z.number().min(35, 'size is required').max(50),
+  size: z.coerce.number().min(35, {
+    message: 'Product size is required',
+  }),
   description: z.string().min(10, {
-    message: 'product desscritpion is required',
+    message: 'Product desscritpion is required',
   }),
   categoryId: z.string().min(1, {
     message: 'Product category is required',
