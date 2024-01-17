@@ -25,22 +25,29 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+} from '@/components/ui/form'
+
+import * as z from 'zod'
 
 interface Props {
-  options: { id: string; name: string }[]
+  options: { label: string; value: string }[]
 }
 
 export function ProductForm({ options }: Props) {
   const [isPending, startTransition] = useTransition()
 
-  const {
-    reset,
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<TProductSchemaValidator>({
+  const form = useForm<z.infer<typeof ProductSchemaValidator>>({
     resolver: zodResolver(ProductSchemaValidator),
+    defaultValues: {},
   })
+
+  const { isSubmitting, isValid } = form.formState
 
   const onSubmit = (values: TProductSchemaValidator) => {
     startTransition(() => {
@@ -54,95 +61,105 @@ export function ProductForm({ options }: Props) {
     })
   }
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="grid gap-2">
-        {/* product name */}
-        <div className="grid gap-1 py-2">
-          <Label htmlFor="name">Product name</Label>
-          <Input
-            {...register('name')}
-            className={cn({ 'focus-visible:ring-red-500': errors.name })}
-            placeholder="Crop top"
+    <>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-2">
+          {/* product name */}
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem className="grid gap-1 py-2">
+                <FormControl>
+                  <div className="w-full space-y-1">
+                    <FormLabel htmlFor="name">Product name</FormLabel>
+                    <Input placeholder="Crop top" {...field} />
+                  </div>
+                </FormControl>
+              </FormItem>
+            )}
           />
-          {errors?.name && (
-            <p className="text-sm text-red-500">{errors.name.message}</p>
-          )}
-        </div>
-
-        {/* product  price*/}
-        <div className="grid gap-1 py-2">
-          <Label htmlFor="name">Product price</Label>
-          <Input
-            {...register('price')}
-            className={cn({ 'focus-visible:ring-red-500': errors.price })}
-            placeholder="price in USD"
+          {/* product price */}
+          <FormField
+            control={form.control}
+            name="price"
+            render={({ field }) => (
+              <FormItem className="grid gap-1 py-2">
+                <FormControl>
+                  <div className="w-full space-y-1">
+                    <FormLabel htmlFor="price">Product Price</FormLabel>
+                    <Input placeholder="Enter the product price" {...field} />
+                  </div>
+                </FormControl>
+              </FormItem>
+            )}
           />
-          {errors?.price && (
-            <p className="text-sm text-red-500">{errors.price.message}</p>
-          )}
-        </div>
-
-        {/* product  size*/}
-        <div className="grid gap-1 py-2">
-          <Label htmlFor="name">Product size</Label>
-          <Input
-            {...register('size')}
-            className={cn({ 'focus-visible:ring-red-500': errors.size })}
-            placeholder="Product size 'eg: size 45'"
+          {/* product size */}
+          <FormField
+            control={form.control}
+            name="size"
+            render={({ field }) => (
+              <FormItem className="grid gap-1 py-2">
+                <FormControl>
+                  <div className="w-full space-y-1">
+                    <FormLabel htmlFor="size">Product size</FormLabel>
+                    <Input
+                      placeholder="Enter the product size 'e.g: Size 45'"
+                      {...field}
+                    />
+                  </div>
+                </FormControl>
+              </FormItem>
+            )}
           />
-          {errors?.size && (
-            <p className="text-sm text-red-500">{errors.size.message}</p>
-          )}
-        </div>
-
-        {/* product  description*/}
-        <div className="grid gap-1 py-2">
-          <Label htmlFor="description">Product description</Label>
-          <Textarea
-            {...register('description')}
-            className={cn({ 'focus-visible:ring-red-500': errors.description })}
-            placeholder="Quality top from amazing ladies"
+          {/* product size */}
+          <FormField
+            control={form.control}
+            name="description"
+            render={({ field }) => (
+              <FormItem className="grid gap-1 py-2">
+                <FormControl>
+                  <div className="w-full space-y-1">
+                    <FormLabel htmlFor="description">
+                      Product description
+                    </FormLabel>
+                    <Textarea
+                      placeholder="Quality crop-top for teenage ladies"
+                      {...field}
+                    ></Textarea>
+                  </div>
+                </FormControl>
+              </FormItem>
+            )}
           />
-          {errors?.description && (
-            <p className="text-sm text-red-500">{errors.description.message}</p>
-          )}
-        </div>
-
-        {/* product  category*/}
-        <div className="grid gap-1 py-2">
-          <Label htmlFor="categoryId">Product category</Label>
-          {/* @ts-ignore */}
-          <Select {...register('categoryId')}>
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select a category" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Categories</SelectLabel>
-                {options.map((opt) => (
-                  <SelectItem value={opt.name} key={opt.id}>
-                    {opt.name}
-                  </SelectItem>
-                ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-          {errors?.categoryId && (
-            <p className="text-sm text-red-500">{errors.categoryId.message}</p>
-          )}
-        </div>
-
-        <Button disabled={isPending}>
-          {isPending ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Creating product...
-            </>
-          ) : (
-            <>Create product</>
-          )}
-        </Button>
-      </div>
-    </form>
+          {/* product categoryId */}
+          <FormField
+            control={form.control}
+            name="categoryId"
+            render={({ field }) => (
+              <FormItem className="grid gap-1 py-2">
+                <FormControl>
+                  <div className="w-full space-y-1">
+                    <FormLabel htmlFor="categoryId">Product category</FormLabel>
+                    {/* @ts-ignore */}
+                    <Combobox options={options} {...field} />
+                  </div>
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          <Button size={'lg'} disabled={isPending || !isValid} type="submit">
+            {isPending ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin" />
+                Creating...
+              </>
+            ) : (
+              <>Continue</>
+            )}
+          </Button>
+        </form>
+      </Form>
+    </>
   )
 }
