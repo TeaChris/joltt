@@ -32,9 +32,7 @@ export const ProductSchemaValidator = z.object({
   description: z.string().min(10, {
     message: 'Product desscritpion is required',
   }),
-  categoryId: z.string().min(1, {
-    message: 'Product category is required',
-  }),
+  categoryId: z.string(),
 })
 
 export type TAuthCredentialsValidator = z.infer<typeof AuthCredentialsValidator>

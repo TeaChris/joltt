@@ -11,15 +11,23 @@ import { Loader2 } from 'lucide-react'
 
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import * as z from 'zod'
 import { ProductSchemaValidator, TProductSchemaValidator } from '@/schemas'
 import { useTransition } from 'react'
 import { createProduct } from '@/actions/create-product'
 import { toast } from 'sonner'
 import { Combobox } from '@/components/ui/combobox'
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
 interface Props {
-  options: { label: string; value: string }[]
+  options: { id: string; name: string }[]
 }
 
 export function ProductForm({ options }: Props) {
@@ -102,9 +110,23 @@ export function ProductForm({ options }: Props) {
 
         {/* product  category*/}
         <div className="grid gap-1 py-2">
-          <Label htmlFor="description">Product category</Label>
+          <Label htmlFor="categoryId">Product category</Label>
           {/* @ts-ignore */}
-          <Combobox options={options} {...register('categoryId')} />
+          <Select {...register('categoryId')}>
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Select a category" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Categories</SelectLabel>
+                {options.map((opt) => (
+                  <SelectItem value={opt.name} key={opt.id}>
+                    {opt.name}
+                  </SelectItem>
+                ))}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
           {errors?.categoryId && (
             <p className="text-sm text-red-500">{errors.categoryId.message}</p>
           )}

@@ -23,10 +23,7 @@ export default async function ProductPage() {
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[400px]">
           <div className="grid gap-6">
             <ProductForm
-              options={categories.map((category) => ({
-                label: category.name,
-                value: category.id,
-              }))}
+              options={categories}
             />
           </div>
         </div>
