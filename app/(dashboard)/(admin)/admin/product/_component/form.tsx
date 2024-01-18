@@ -2,29 +2,8 @@
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
-
-import { cn } from '@/lib/utils'
-
-import { Loader2 } from 'lucide-react'
-
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { ProductSchemaValidator, TProductSchemaValidator } from '@/schemas'
-import { useTransition } from 'react'
-import { createProduct } from '@/actions/create-product'
-import { toast } from 'sonner'
 import { Combobox } from '@/components/ui/combobox'
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 import {
   Form,
   FormControl,
@@ -33,14 +12,30 @@ import {
   FormLabel,
 } from '@/components/ui/form'
 
+import { Loader2 } from 'lucide-react'
+
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+import { useTransition } from 'react'
+
+import { toast } from 'sonner'
+
+import { createProduct } from '@/actions/create-product'
+import { ProductSchemaValidator, TProductSchemaValidator } from '@/schemas'
+
 import * as z from 'zod'
+
+import axios from 'axios'
+
+import { useRouter } from 'next/navigation'
 
 interface Props {
   options: { label: string; value: string }[]
 }
 
 export function ProductForm({ options }: Props) {
-  const [isPending, startTransition] = useTransition()
+  const router = useRouter()
 
   const form = useForm<z.infer<typeof ProductSchemaValidator>>({
     resolver: zodResolver(ProductSchemaValidator),
@@ -49,17 +44,17 @@ export function ProductForm({ options }: Props) {
 
   const { isSubmitting, isValid } = form.formState
 
-  const onSubmit = (values: TProductSchemaValidator) => {
-    startTransition(() => {
-      createProduct(values).then((data) => {
-        if (data.success) {
-          toast.success(data.success)
-        } else {
-          toast.error(data.error)
-        }
-      })
-    })
+  const onSubmit = async (values: TProductSchemaValidator) => {
+    try {
+      const res = await axios.post('/api/products', values)
+      toast.success('Your product was successfully created')
+      form.reset()
+      router.push(`/admin/product/${res.data.id}`)
+    } catch (error) {
+      toast.error('Something went wrong, please try again')
+    }
   }
+
   return (
     <>
       <Form {...form}>
@@ -148,8 +143,8 @@ export function ProductForm({ options }: Props) {
               </FormItem>
             )}
           />
-          <Button size={'lg'} disabled={isPending || !isValid} type="submit">
-            {isPending ? (
+          <Button size={'lg'} disabled={isSubmitting || !isValid} type="submit">
+            {isSubmitting ? (
               <>
                 <Loader2 className="w-4 h-4 animate-spin" />
                 Creating...

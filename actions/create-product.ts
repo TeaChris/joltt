@@ -2,12 +2,14 @@
 
 import { ProductSchemaValidator, TProductSchemaValidator } from '@/schemas'
 import { db } from '@/lib/db'
-import { currentUser, currentUserId } from '@/lib/auth'
+import { currentRole, currentUserId } from '@/lib/auth'
+import { UserRole } from '@prisma/client'
 
 export const createProduct = async (values: TProductSchemaValidator) => {
   const userId = await currentUserId()
+  const role = await currentRole()
 
-  if (!userId) {
+  if (!userId || role !== UserRole.ADMIN) {
     return { error: 'Unauthorized' }
   }
 
