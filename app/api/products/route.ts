@@ -9,7 +9,7 @@ export async function POST(req: Request) {
     const role = await currentRole()
 
     if (!userId || role !== UserRole.ADMIN) {
-      return new NextResponse('Unauthorised', { status: 401 })
+      return new NextResponse('Unauthorized', { status: 401 })
     }
 
     const { name, categoryId, price, description, size } = await req.json()

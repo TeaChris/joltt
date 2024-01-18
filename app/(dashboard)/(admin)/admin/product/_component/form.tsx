@@ -17,11 +17,8 @@ import { Loader2 } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { useTransition } from 'react'
-
 import { toast } from 'sonner'
 
-import { createProduct } from '@/actions/create-product'
 import { ProductSchemaValidator, TProductSchemaValidator } from '@/schemas'
 
 import * as z from 'zod'
