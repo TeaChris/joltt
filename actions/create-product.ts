@@ -3,7 +3,6 @@
 import { ProductSchemaValidator, TProductSchemaValidator } from '@/schemas'
 import { db } from '@/lib/db'
 import { currentUser, currentUserId } from '@/lib/auth'
-import { NextResponse } from 'next/server'
 
 export const createProduct = async (values: TProductSchemaValidator) => {
   const userId = await currentUserId()

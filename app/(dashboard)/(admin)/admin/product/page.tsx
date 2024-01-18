@@ -1,16 +1,9 @@
-import { currentUser } from '@/lib/auth'
 import { ProductForm } from './_component/form'
-import { redirect } from 'next/navigation'
 import { db } from '@/lib/db'
+import { RoleGate } from '@/components/auth/role-gate'
+import { UserRole } from '@prisma/client'
 
 export default async function ProductPage() {
-  const user = await currentUser()
-
-  if (!user) {
-    // || user.role !== 'ADMIN'
-    return redirect('/auth/sign-in')
-  }
-
   const categories = await db.category.findMany({
     orderBy: {
       name: 'asc',
