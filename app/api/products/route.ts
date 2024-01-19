@@ -12,7 +12,8 @@ export async function POST(req: Request) {
       return new NextResponse('Unauthorized', { status: 401 })
     }
 
-    const { name, categoryId, price, description, size } = await req.json()
+    const { name, categoryId, price, description, size, stock } =
+      await req.json()
 
     const product = await db.products.create({
       data: {
@@ -22,6 +23,7 @@ export async function POST(req: Request) {
         price,
         description,
         size,
+        stock,
       },
     })
     return NextResponse.json(product)
