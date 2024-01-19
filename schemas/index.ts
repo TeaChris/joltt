@@ -25,6 +25,7 @@ export const ProductSchemaValidator = z.object({
   name: z.string().min(5, {
     message: 'Produuct name is required',
   }),
+  stock: z.coerce.number(),
   price: z.coerce.number(),
   size: z.coerce.number().min(35, {
     message: 'Product size is required',

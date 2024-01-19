@@ -86,6 +86,7 @@ export function ProductForm({ options }: Props) {
               </FormItem>
             )}
           />
+
           {/* product size */}
           <FormField
             control={form.control}
@@ -104,7 +105,24 @@ export function ProductForm({ options }: Props) {
               </FormItem>
             )}
           />
+
           {/* product size */}
+          <FormField
+            control={form.control}
+            name="stock"
+            render={({ field }) => (
+              <FormItem className="grid gap-1 py-2">
+                <FormControl>
+                  <div className="w-full space-y-1">
+                    <FormLabel htmlFor="size">Items in stock</FormLabel>
+                    <Input placeholder="Item in stock" {...field} />
+                  </div>
+                </FormControl>
+              </FormItem>
+            )}
+          />
+
+          {/* product description */}
           <FormField
             control={form.control}
             name="description"
