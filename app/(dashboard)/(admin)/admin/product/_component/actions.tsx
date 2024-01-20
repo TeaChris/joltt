@@ -15,11 +15,7 @@ interface ActionsProps {
   isPublished: boolean
 }
 
-export default function Actions({
-  disabled,
-  productId,
-  isPublished,
-}: ActionsProps) {
+export function Actions({ disabled, productId, isPublished }: ActionsProps) {
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const router = useRouter()
@@ -60,17 +56,18 @@ export default function Actions({
     }
   }
   return (
-    <div className="flex items-center gap-x-2">
+    <div className="flex flex-col items-center gap-y-2 w-full">
       <Button
         onClick={onClick}
         disabled={disabled || isLoading}
         variant={'outline'}
-        size={'sm'}
+        size={'lg'}
+        className="w-full"
       >
         {isPublished ? 'Unpublished' : 'Publish'}
       </Button>
       <ConfirmModal onConfirm={onDelete}>
-        <Button size="sm" disabled={isLoading}>
+        <Button size="lg" disabled={isLoading} className="w-full">
           {isLoading ? (
             <Loader2 className="h-4 w-4 animate-spin" />
           ) : (

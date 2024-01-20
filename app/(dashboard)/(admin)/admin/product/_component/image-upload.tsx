@@ -1,12 +1,18 @@
 'use client'
 
-import { z } from 'zod'
-import { toast } from 'sonner'
-import axios from 'axios'
 import { Products } from '@prisma/client'
+
+import { ImageIcon, Pencil, PlusCircle } from 'lucide-react'
+
+import * as z from 'zod'
+
+import axios from 'axios'
+
+import { toast } from 'sonner'
+
 import { Button } from '@/components/ui/button'
 import FileUpload from '@/components/file-upload'
-import { ImageIcon, Pencil, PlusCircle, Trash } from 'lucide-react'
+
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
@@ -41,7 +47,7 @@ export function ImageUpload({ initialData, productId }: Props) {
   }
 
   return (
-    <div className="container relative flex space-y-8 pt-10 flex-col items-center justify-center lg:px-0">
+    <div className="container relative flex pt-10 flex-col items-center justify-center lg:px-0">
       <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[700px]">
         <div className="grid gap-6">
           <div className="w-full flex justify-between items-center">
@@ -87,16 +93,6 @@ export function ImageUpload({ initialData, productId }: Props) {
             </div>
           )}
         </div>
-      </div>
-      <div className="w-full sm:w-[700px] px-4 flex flex-col space-y-2">
-        <Button>Publish product</Button>
-        <Button variant={'outline'}>
-          <>
-            <Trash className="w-4 h-5" />
-            {'  '}
-            Delete product
-          </>
-        </Button>
       </div>
     </div>
   )
