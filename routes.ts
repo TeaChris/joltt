@@ -33,6 +33,13 @@ export const authRoutes = [
 export const apiAuthPrefix = '/api/auth'
 
 /**
+ * The prefix for UPLOADTHING API authentication routes
+ * Routes that start with this prefix are used for UPLOADTHING API authentication purposes
+ * @type {string}
+ */
+export const apiUploadthingAuthPrefix = '/api/uploadthing'
+
+/**
  * The default redirect path after logging in
  * @type {string}
  */

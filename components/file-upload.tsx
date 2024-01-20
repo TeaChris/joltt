@@ -13,7 +13,8 @@ interface FileUploadProps {
 export default function FileUpload({ onChange, endpoint }: FileUploadProps) {
   return (
     <UploadDropzone
-      endpoint={endpoint}
+      // endpoint={endpoint}
+      endpoint="productImg" // you can as well do endpoint={endpoint} if you have multifple endpoints you want to target
       onClientUploadComplete={(res) => {
         onChange(res?.[0].url)
       }}

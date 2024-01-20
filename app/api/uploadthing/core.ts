@@ -16,7 +16,11 @@ const auth = async () => {
 export const ourFileRouter = {
   productImg: f({ image: { maxFileSize: '4MB', maxFileCount: 1 } })
     .middleware(() => auth())
-    .onUploadComplete(() => {}),
+    .onUploadComplete(async ({ metadata, file }) => {
+      console.log('Upload complete for userId:', metadata.userId)
+
+      console.log('file url', file.url)
+    }),
 } satisfies FileRouter
 
 export type ourFileRouter = typeof ourFileRouter

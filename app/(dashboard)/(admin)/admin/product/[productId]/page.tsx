@@ -25,10 +25,6 @@ const formSchema = z.object({
   }),
 })
 
-const stockSchema = z.object({
-  stock: z.coerce.number(),
-})
-
 interface Props {
   productId: string | null
 }
@@ -36,21 +32,12 @@ interface Props {
 export default function Page({ params }: { params: { productId: string } }) {
   const { productId } = params
 
-  const form = useForm<z.infer<typeof stockSchema>>({
-    resolver: zodResolver(stockSchema),
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
     defaultValues: {
-      stock: undefined,
+      imageUrl: '',
     },
   })
-
-  const onClick = async (values: z.infer<typeof stockSchema>) => {
-    try {
-      await axios.patch(`/api/products/${productId}`, values)
-      toast.success('Product updated successfully')
-    } catch {
-      toast.error('Something went wrong, please try agin')
-    }
-  }
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
@@ -79,10 +66,10 @@ export default function Page({ params }: { params: { productId: string } }) {
         </div>
       </div>
 
-      <div className="mx-auto w-full h-fit sm:h-96 flex flex-col space-x-4 sm:flex-row items-start sm:items-center sm:justify-between">
-        <div className="w-[45%] h-full px-4">
+      <div className="container relative flex pt-10 flex-col items-center justify-center lg:px-0">
+        <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[400px]">
           <div className="grid gap-6">
-            <h3>Upload product image</h3>
+            <h3 className="font-semibold">Upload product image</h3>
             <FileUpload
               endpoint="productImg"
               onChange={(url) => {
@@ -91,37 +78,6 @@ export default function Page({ params }: { params: { productId: string } }) {
                 }
               }}
             />
-          </div>
-        </div>
-        <div className="w-[1px] h-1/2 bg-neutral-200" aria-hidden="true" />
-        <div className="w-[45%] h-full px-4">
-          <div className="grid gap-6">
-            <h3>Upload items in stock</h3>
-            <Form {...form}>
-              <form
-                onClick={form.handleSubmit(onClick)}
-                className="w-full space-x-2"
-              >
-                <FormField
-                  control={form.control}
-                  name="stock"
-                  render={({ field }) => (
-                    <FormItem>
-                      <Label htmlFor="stock">Stock</Label>
-                      <FormControl>
-                        <Input
-                          type="number"
-                          placeholder="items in stock"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <Button>Continue</Button>
-              </form>
-            </Form>
           </div>
         </div>
       </div>

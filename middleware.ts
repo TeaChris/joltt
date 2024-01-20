@@ -8,6 +8,7 @@ import {
   privateRoutes,
   publicRoutes,
   apiAuthPrefix,
+  apiUploadthingAuthPrefix,
 } from '@/routes'
 
 const { auth } = NextAuth(authConfig)
@@ -20,9 +21,15 @@ export default auth((req) => {
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname)
   const isAuthRoute = authRoutes.includes(nextUrl.pathname)
   const isPrivateRoute = privateRoutes.includes(nextUrl.pathname)
+  const isUploadthing = nextUrl.pathname.startsWith(apiUploadthingAuthPrefix)
 
   if (isApiAuthRoute) {
     // public for everyone and next-auth
+    return null
+  }
+
+  if (isUploadthing) {
+    // public for UPLOADTHING
     return null
   }
 

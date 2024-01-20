@@ -7,6 +7,8 @@ import { Toaster } from 'sonner'
 import { SessionProvider } from 'next-auth/react'
 import { auth } from '@/auth'
 
+import '@uploadthing/react/styles.css'
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
