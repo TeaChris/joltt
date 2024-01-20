@@ -1,6 +1,8 @@
+import { getProducts } from '@/actions/get-products'
 import { MaxWidthWrapper } from '@/components/MaxWidthWrapper'
 import { Categories } from '@/components/categories'
 import { Button, buttonVariants } from '@/components/ui/button'
+import { currentUserId } from '@/lib/auth'
 import { db } from '@/lib/db'
 
 import { ArrowDownToLine, CheckCircle, Leaf } from 'lucide-react'
@@ -29,11 +31,17 @@ const perks = [
 ]
 
 export default async function Home() {
+  const userId = await currentUserId()
   const categories = await db.category.findMany({
     orderBy: {
       name: 'asc',
     },
   })
+
+  // @ts-ignore
+  const products = await getProducts({ userId })
+
+  console.log(products)
   return (
     <>
       <MaxWidthWrapper>

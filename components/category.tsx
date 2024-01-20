@@ -3,7 +3,6 @@
 import { cn } from '@/lib/utils'
 import qs from 'query-string'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { IconType } from 'react-icons'
 
 interface Props {
   label: string
