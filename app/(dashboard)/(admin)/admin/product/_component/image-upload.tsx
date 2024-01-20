@@ -3,11 +3,8 @@
 import { z } from 'zod'
 import { toast } from 'sonner'
 import axios from 'axios'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
 import { Products } from '@prisma/client'
-import Link from 'next/link'
-import { Button, buttonVariants } from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 import FileUpload from '@/components/file-upload'
 import { ImageIcon, Pencil, PlusCircle, Trash } from 'lucide-react'
 import { useState } from 'react'
@@ -95,7 +92,8 @@ export function ImageUpload({ initialData, productId }: Props) {
         <Button>Publish product</Button>
         <Button variant={'outline'}>
           <>
-            <Trash className="w-4 h-5" />{'  '}
+            <Trash className="w-4 h-5" />
+            {'  '}
             Delete product
           </>
         </Button>
