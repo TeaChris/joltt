@@ -23,34 +23,22 @@ export async function PATCH(
     })
 
     if (!product) {
-      return new NextResponse('Not found', { status: 404 })
+      return new NextResponse('Not found', { status: 401 })
     }
 
-    if (
-      !product.name ||
-      !product.price ||
-      !product.size ||
-      !product.stock ||
-      !product.categoryId ||
-      !product.imageUrl ||
-      !product.description
-    ) {
-      return new NextResponse('Missing required fields', { status: 401 })
-    }
-
-    const published = await db.products.update({
+    const unPublish = await db.products.update({
       where: {
         id: params.productId,
         userId,
       },
       data: {
-        isPublished: true,
+        isPublished: false,
       },
     })
 
-    return NextResponse.json(published)
+    return NextResponse.json(unPublish)
   } catch (error) {
-    console.log('[PRODUCT_ID_PUBLISH]', error)
+    console.log('[PRODUCT_ID_UNPUBLISH]', error)
     return new NextResponse('Internal Error', { status: 500 })
   }
 }
