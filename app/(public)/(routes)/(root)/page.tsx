@@ -1,5 +1,7 @@
 import { MaxWidthWrapper } from '@/components/MaxWidthWrapper'
+import { Categories } from '@/components/categories'
 import { Button, buttonVariants } from '@/components/ui/button'
+import { db } from '@/lib/db'
 
 import { ArrowDownToLine, CheckCircle, Leaf } from 'lucide-react'
 
@@ -26,7 +28,12 @@ const perks = [
   },
 ]
 
-export default function Home() {
+export default async function Home() {
+  const categories = await db.category.findMany({
+    orderBy: {
+      name: 'asc',
+    },
+  })
   return (
     <>
       <MaxWidthWrapper>
@@ -50,6 +57,9 @@ export default function Home() {
         </div>
 
         {/* TODO: ADD PRODUCT REELS */}
+        <div className="w-full flex items-center justify-center">
+          <Categories items={categories} />
+        </div>
       </MaxWidthWrapper>
 
       <section className="border-t border-gray-200 bg-gray-50">

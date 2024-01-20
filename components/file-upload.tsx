@@ -21,6 +21,13 @@ export default function FileUpload({ onChange, endpoint }: FileUploadProps) {
       onUploadError={(error: Error) => {
         toast.error(`${error?.message}`)
       }}
+      appearance={{
+        button({ ready, isUploading }) {
+          return {
+            ...(ready && { color: '240 5.9% 10%' }),
+          }
+        },
+      }}
     />
   )
 }
