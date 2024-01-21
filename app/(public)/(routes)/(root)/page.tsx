@@ -1,6 +1,7 @@
 import { getProducts } from '@/actions/get-products'
 import { MaxWidthWrapper } from '@/components/MaxWidthWrapper'
 import { Categories } from '@/components/categories'
+import { ProductList } from '@/components/product-list'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { currentUserId } from '@/lib/auth'
 import { db } from '@/lib/db'
@@ -30,7 +31,11 @@ const perks = [
   },
 ]
 
-export default async function Home() {
+interface Props {
+  searchParams: { title: string; categoryId: string }
+}
+
+export default async function Home({ searchParams }: Props) {
   const userId = await currentUserId()
   const categories = await db.category.findMany({
     orderBy: {
@@ -39,9 +44,8 @@ export default async function Home() {
   })
 
   // @ts-ignore
-  const products = await getProducts({ userId })
+  const products = await getProducts({ userId, ...searchParams })
 
-  console.log(products)
   return (
     <>
       <MaxWidthWrapper>
@@ -64,9 +68,14 @@ export default async function Home() {
           </div>
         </div>
 
-        {/* TODO: ADD PRODUCT REELS */}
-        <div className="w-full flex items-center justify-center">
-          <Categories items={categories} />
+        {/* PRODUCT REELS */}
+        <div className="space-y-3 pb-6">
+          <div className="w-full flex items-center justify-center">
+            <Categories items={categories} />
+          </div>
+
+          {/* @ts-ignore */}
+          <ProductList items={products} />
         </div>
       </MaxWidthWrapper>
 

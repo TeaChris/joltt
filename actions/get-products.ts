@@ -17,13 +17,14 @@ export async function getProducts({
   categoryId,
 }: GetProducts): Promise<ProductWithCategory[]> {
   try {
+    // get all products
     const products = await db.products.findMany({
       where: {
-        isPublished: true,
+        isPublished: true, // get only publish products
         name: {
-          contains: name,
+          contains: name, // by names
         },
-        categoryId,
+        categoryId, //by categoryId
       },
       include: {
         category: true,

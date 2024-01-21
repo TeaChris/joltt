@@ -23,7 +23,7 @@ export async function PATCH(
     })
 
     if (!product) {
-      return new NextResponse('Not found', { status: 401 })
+      return new NextResponse('Not found', { status: 404 })
     }
 
     const unPublish = await db.products.update({
