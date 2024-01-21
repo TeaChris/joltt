@@ -75,7 +75,7 @@ export default async function Home({ searchParams }: Props) {
           </div>
 
           {/* @ts-ignore */}
-          <ProductList items={products} />
+          <ProductList items={products} title='Top picks for you' href='/collections'/>
         </div>
       </MaxWidthWrapper>
 

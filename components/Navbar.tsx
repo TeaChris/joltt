@@ -7,8 +7,8 @@ import { currentUser } from '@/lib/auth'
 
 const nav = [
   {
-    label: 'Shop',
-    href: '/shop',
+    label: 'Collections',
+    href: '/collections',
   },
 ]
 
