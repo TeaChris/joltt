@@ -74,9 +74,7 @@ export default async function Home({ searchParams }: Props) {
             <Categories items={categories} />
           </div>
 
-          
           <ProductList
-          {/* @ts-ignore */}
             items={products}
             title="Top picks for you"
             href="/products"
