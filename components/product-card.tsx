@@ -12,7 +12,7 @@ interface Props {
 
 export function ProductCard({ id, name, imageUrl, price }: Props) {
   return (
-    <Link href={`/collections/${id}`}>
+    <Link href={`/products/${id}`}>
       <div className="group hover:shadow-sm transition overflow-hidden rounded-lg p-3 h-full">
         <div className="relative w-full h-52 bg-muted flex items-center justify-center aspect-video rounded-md overflow-hidden">
           {/* @ts-ignore */}
