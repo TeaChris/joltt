@@ -15,17 +15,25 @@ import { buttonVariants } from './ui/button'
 import Image from 'next/image'
 import { ScrollArea } from './ui/scroll-area'
 import { useEffect, useState } from 'react'
+import { useCart } from '@/hooks/use-cart'
+import { formatPrice } from '@/lib/format-price'
+import { CartItem } from './cart-item'
 
 export function Cart() {
+  const { items } = useCart()
+  const itemCount = items.length
   const [isMounted, setIsMounted] = useState<boolean>(false)
 
   useEffect(() => {
     setIsMounted(true)
   }, [])
 
-  const fee = 1
+  const cartTotal = items.reduce(
+    (total, { product }) => total + product.price,
+    0
+  )
 
-  let itemCount = 0
+  const fee = 1
 
   return (
     <Sheet>
@@ -45,7 +53,11 @@ export function Cart() {
         {itemCount > 0 ? (
           <>
             <div className="flex w-full flex-col pr-6">
-              <ScrollArea></ScrollArea>
+              <ScrollArea>
+                {items.map(({ product }) => (
+                  <CartItem product={product} key={product.id} />
+                ))}
+              </ScrollArea>
             </div>
             <div className="space-y-4 pr-6">
               <Separator />
@@ -56,9 +68,11 @@ export function Cart() {
                 </div>
                 <div className="flex">
                   <span className="flex-1">Transaction Fee</span>
+                  <span>{formatPrice(fee)}</span>
                 </div>
                 <div className="flex">
                   <span className="flex-1">Total</span>
+                  <span>{formatPrice(cartTotal + fee)}</span>
                 </div>
               </div>
 
