@@ -12,7 +12,20 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
+  pages: {
+    signIn: '/auth/sign-in',
+    error: '/auth/error',
+  },
   callbacks: {
+    async signIn({ user }) {
+      const existingUser = await getUserById(user.id)
+
+      
+
+      // enabling 2FA authentication
+
+      return true
+    },
     async jwt({ token }) {
       if (!token.sub) return token
 
