@@ -53,3 +53,12 @@ model Category {
   name       String
   Products    Products[]
 }
+
+model VerificationToken {
+id      String @id @default(cuid()) @map("_id")
+email   String
+token   String @unique
+expires DateTime
+
+@@unique([email, token])
+}
