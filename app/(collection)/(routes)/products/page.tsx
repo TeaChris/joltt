@@ -1,5 +1,4 @@
 import { getProducts } from '@/actions/get-products'
-import { auth } from '@/auth'
 import { MaxWidthWrapper } from '@/components/MaxWidthWrapper'
 import { Categories } from '@/components/categories'
 import { ProductList } from '@/components/product-list'

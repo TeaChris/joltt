@@ -12,6 +12,9 @@ import {
 } from './ui/dropdown-menu'
 import Link from 'next/link'
 import { logOut } from '@/actions/sign-out'
+import { useCurrentRole } from '@/hooks/use-current-role'
+import { UserRole } from '@prisma/client'
+import { useCurrentUserId } from '@/hooks/use-current-id'
 
 interface Props {
   user?: ExtendedUser
@@ -19,6 +22,8 @@ interface Props {
 
 export default function UserAccountNav(props: Props) {
   const { user } = props
+
+  const role = useCurrentRole()
 
   const onClick = () => {
     logOut()
@@ -41,10 +46,16 @@ export default function UserAccountNav(props: Props) {
         <DropdownMenuSeparator />
 
         <DropdownMenuItem asChild>
-          <Link href="/dashboard">Dashboard</Link>
+          {role === UserRole.ADMIN ? (
+            <Link href={`/admin/product`}>Dashboard</Link>
+          ) : (
+            <Link href={`/dashboard`}>Dashboard</Link>
+          )}
         </DropdownMenuItem>
 
-        <DropdownMenuItem onClick={onClick} className="cursor-pointer">Log out</DropdownMenuItem>
+        <DropdownMenuItem onClick={onClick} className="cursor-pointer">
+          Log out
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )

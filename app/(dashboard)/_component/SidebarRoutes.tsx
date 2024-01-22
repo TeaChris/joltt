@@ -46,8 +46,8 @@ const userRoutes = [
     href: '/user/dashboard',
   },
   {
-    icon: Compass,
-    label: 'Orders',
+    icon: Settings,
+    label: 'Settings',
     href: '/user/orders',
   },
 ]
