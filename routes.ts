@@ -43,4 +43,4 @@ export const apiUploadthingAuthPrefix = '/api/uploadthing'
  * The default redirect path after logging in
  * @type {string}
  */
-export const DEFAULT_LOGIN_REDIRECT = '/collections'
+export const DEFAULT_LOGIN_REDIRECT = '/products'

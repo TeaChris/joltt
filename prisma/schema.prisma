@@ -16,6 +16,11 @@ enum UserRole {
   USER
 }
 
+enum  ProductStatus {
+  PENDING
+  DELIVERED
+}
+
 model User {
   id                        String    @id @default(cuid()) @map("_id")
   name                      String?
@@ -44,6 +49,8 @@ model Products {
 
   isPublished       Boolean @default(false)
 
+  orders       Orders[]
+
   @@index([categoryId])
   @@fulltext([name])
 }
@@ -61,4 +68,19 @@ token   String @unique
 expires DateTime
 
 @@unique([email, token])
+}
+
+model Orders {
+  id        String @id @default(uuid()) @map("_id")
+  userId    String
+  status    ProductStatus @default(PENDING)
+
+  productId  String
+  product    Products @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+
+  @@unique([userId, productId])
+  @@index([productId])
 }
