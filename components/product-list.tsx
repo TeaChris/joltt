@@ -1,5 +1,9 @@
+'use client'
+
 import { Category, Products } from '@prisma/client'
 import { ProductCard } from './product-card'
+
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 
 type ProductWithCategory = Products & {
@@ -14,6 +18,8 @@ interface Props {
 }
 
 export function ProductList({ items, title, subtitle, href }: Props) {
+  const pathname = usePathname()
+
   // Shuffle the items randomly
   const shuffledItems = [...items].sort(() => Math.random() - 0.5)
 
@@ -47,17 +53,33 @@ export function ProductList({ items, title, subtitle, href }: Props) {
 
       <div className="relative">
         <div className="mt-6 flex items-center w-full">
-          <div className="w-full grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-10 lg:gap-x-8">
-            {items.map((item) => (
-              <ProductCard
-                key={item.id}
-                id={item.id}
-                name={item.name}
-                imageUrl={item.imageUrl}
-                price={item.price}
-              />
-            ))}
-          </div>
+          {/* <div className="w-full grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-10 lg:gap-x-8">
+            {pathname === '/' ? (
+              <>
+                {randomItems.map((item) => (
+                  <ProductCard
+                    key={item.id}
+                    id={item.id}
+                    name={item.name}
+                    imageUrl={item.imageUrl}
+                    price={item.price}
+                  />
+                ))}
+              </>
+            ) : (
+              <>
+                {items.map((item) => (
+                  <ProductCard
+                    key={item.id}
+                    id={item.id}
+                    name={item.name}
+                    imageUrl={item.imageUrl}
+                    price={item.price}
+                  />
+                ))}
+              </>
+            )}
+          </div> */}
           {items.length === 0 && (
             <div className="text-center tex-sm text-muted-foreground mt-10">
               No products found
