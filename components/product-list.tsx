@@ -53,7 +53,7 @@ export function ProductList({ items, title, subtitle, href }: Props) {
 
       <div className="relative">
         <div className="mt-6 flex items-center w-full">
-          {/* <div className="w-full grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-10 lg:gap-x-8">
+          <div className="w-full grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-10 lg:gap-x-8">
             {pathname === '/' ? (
               <>
                 {randomItems.map((item) => (
@@ -79,7 +79,7 @@ export function ProductList({ items, title, subtitle, href }: Props) {
                 ))}
               </>
             )}
-          </div> */}
+          </div>
           {items.length === 0 && (
             <div className="text-center tex-sm text-muted-foreground mt-10">
               No products found
