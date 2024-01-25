@@ -12,12 +12,12 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
-export default function Page() {
+export default function Page({ params }: { params: { productId: string } }) {
+  const { productId } = params
+
   const { items, removeItem } = useCart()
 
   const router = useRouter()
-
-  const productId = items.map(({ product }) => product.id)
 
   const [isMounted, setIsMounted] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(false)

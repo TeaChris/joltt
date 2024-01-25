@@ -72,6 +72,7 @@ export async function POST(
       metadata: {
         productId: product.id,
         userId: userId,
+        userEmail: user.email,
       },
     })
 
