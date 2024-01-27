@@ -9,6 +9,7 @@ import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { NameForm } from '../_component/name-form'
 import { PriceForm } from '../_component/price-form'
+import { StockForm } from '../_component/stock-form'
 
 export default async function Page({
   params,
@@ -95,6 +96,14 @@ export default async function Page({
             </div>
             <NameForm data={product} id={params.productId} />
             <PriceForm data={product} id={params.productId} />
+            <StockForm data={product} id={params.productId} />
+          </div>
+
+          <div>
+            <div className="flex items-center gap-x-2">
+              <h2 className="text-xl">Upload Image</h2>
+            </div>
+            <ImageUpload productId={productId} initialData={product} />
           </div>
         </div>
       </div>
@@ -102,4 +111,4 @@ export default async function Page({
   )
 }
 
-//<ImageUpload productId={productId} initialData={product} />
+//

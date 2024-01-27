@@ -48,7 +48,7 @@ export function ImageUpload({ initialData, productId }: Props) {
 
   return (
     <div className="container relative flex pt-10 flex-col items-center justify-center lg:px-0">
-      <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[700px]">
+      <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-96">
         <div className="grid gap-6">
           <div className="w-full flex justify-between items-center">
             <h3>Upload product image</h3>
@@ -63,7 +63,7 @@ export function ImageUpload({ initialData, productId }: Props) {
 
           {!isEditing &&
             (!initialData.imageUrl ? (
-              <div className="flex items-center justify-center h-60 bg-slate-200 rounded-md">
+              <div className="flex items-center justify-center h-48 bg-slate-200 rounded-md">
                 <ImageIcon className="h-10 w-10 text-slate-500" />
               </div>
             ) : (
