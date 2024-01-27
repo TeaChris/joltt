@@ -71,23 +71,17 @@ expires DateTime
 }
 
 model Orders {
-  id                String @id @default(uuid()) @map("_id")
-  userId            String
-  userEmail         String
-  price             Int
-  currency          String
-  deliveryStatus    String?
-  status            String
+  id          String @id @default(uuid()) @map("_id")
+  userId      String
+  userEmail   String
+  price       Int
+  status      ProductStatus @default(PENDING)
 
-  paymentIntentId   String  @unique
+  productId   String
+  product     Products @relation(fields: [productId], references: [id], onDelete: Cascade)
 
-  products          CartProductType[]
-
-  productId         String
-  product           Products @relation(fields: [productId], references: [id], onDelete: Cascade)
-
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt()
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt()
 
   @@unique([userId, productId])
   @@index([productId])
@@ -100,12 +94,4 @@ model StripeCustomer{
 
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
-}
-
-type CartProductType{
-  id              String
-  name            String
-  description     String
-  category        String
-  price           Float
 }

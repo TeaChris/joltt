@@ -42,7 +42,7 @@ export async function POST(
 
     const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [
       {
-        quantity: 1,
+        quantity: 2,
         price_data: {
           currency: 'USD',
           product_data: {
@@ -80,8 +80,8 @@ export async function POST(
       customer: stripeCustomer.stripeCustomerId,
       line_items,
       mode: 'payment',
-      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/products/${product.id}?success=1`,
-      cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/products/${product.id}?canceled=1`,
+      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/products/thank-you?success=1`,
+      cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/products/canceled?canceled=1`,
       metadata: {
         productId: product.id,
         userId: userId,
