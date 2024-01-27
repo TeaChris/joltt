@@ -23,6 +23,19 @@ export async function POST(
       },
     })
 
+    const order = await db.orders.findUnique({
+      where: {
+        userId_productId: {
+          userId: userId,
+          productId: params.productId,
+        },
+      },
+    })
+
+    if (order) {
+      return new NextResponse('Already purchased', { status: 400 })
+    }
+
     if (!product) {
       return new NextResponse('Not Found', { status: 404 })
     }
