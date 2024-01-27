@@ -73,8 +73,6 @@ expires DateTime
 model Orders {
   id          String @id @default(uuid()) @map("_id")
   userId      String
-  userEmail   String
-  price       Int
   status      ProductStatus @default(PENDING)
 
   productId   String

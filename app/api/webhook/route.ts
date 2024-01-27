@@ -24,8 +24,6 @@ export async function POST(req: Request) {
   const session = event.data.object as Stripe.Checkout.Session
   const userId = session?.metadata?.userId
   const productId = session?.metadata?.productId
-  const userEmail = session?.metadata?.userEmail
-  const price = session?.metadata?.productPrice
 
   if (event.type === 'checkout.session.completed') {
     if (!userId || !productId) {
@@ -38,10 +36,6 @@ export async function POST(req: Request) {
       data: {
         userId: userId,
         productId: productId,
-        // @ts-expect-error
-        userEmail: userEmail,
-        // @ts-ignore
-        price: price,
       },
     })
   } else {

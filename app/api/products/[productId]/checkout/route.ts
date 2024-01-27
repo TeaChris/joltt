@@ -10,9 +10,8 @@ export async function POST(
 ) {
   try {
     const user = await currentUser()
-    const userId = await currentUserId()
 
-    if (!user || !userId || !user.email) {
+    if (!user || !user.id || !user.email) {
       return new NextResponse('Unauthorized', { status: 401 })
     }
 
@@ -26,7 +25,7 @@ export async function POST(
     const order = await db.orders.findUnique({
       where: {
         userId_productId: {
-          userId: userId,
+          userId: user.id,
           productId: params.productId,
         },
       },
@@ -42,7 +41,7 @@ export async function POST(
 
     const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [
       {
-        quantity: 2,
+        quantity: 1,
         price_data: {
           currency: 'USD',
           product_data: {
@@ -56,7 +55,7 @@ export async function POST(
 
     let stripeCustomer = await db.stripeCustomer.findUnique({
       where: {
-        userId: userId,
+        userId: user.id,
       },
       select: {
         stripeCustomerId: true,
@@ -70,7 +69,7 @@ export async function POST(
 
       stripeCustomer = await db.stripeCustomer.create({
         data: {
-          userId: userId,
+          userId: user.id,
           stripeCustomerId: customer.id,
         },
       })
@@ -84,9 +83,7 @@ export async function POST(
       cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/products/canceled?canceled=1`,
       metadata: {
         productId: product.id,
-        userId: userId,
-        userEmail: user.email,
-        productPrice: product.price,
+        userId: user.id,
       },
     })
 
