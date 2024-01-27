@@ -56,18 +56,17 @@ export function Actions({ disabled, productId, isPublished }: ActionsProps) {
     }
   }
   return (
-    <div className="flex flex-col items-center gap-y-2 w-full">
+    <div className="flex items-center gap-x-2">
       <Button
         onClick={onClick}
         disabled={disabled || isLoading}
         variant={'outline'}
-        size={'lg'}
-        className="w-full"
+        size={'sm'}
       >
         {isPublished ? 'Unpublished' : 'Publish'}
       </Button>
       <ConfirmModal onConfirm={onDelete}>
-        <Button size="lg" disabled={isLoading} className="w-full">
+        <Button size="sm" disabled={isLoading}>
           {isLoading ? (
             <Loader2 className="h-4 w-4 animate-spin" />
           ) : (
