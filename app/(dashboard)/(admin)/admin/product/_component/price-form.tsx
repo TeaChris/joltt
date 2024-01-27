@@ -25,16 +25,16 @@ import { Input } from '@/components/ui/input'
 
 interface Props {
   data: {
-    name: string
+    price: number
   }
   id: string
 }
 
 const formSchema = z.object({
-  name: z.string().min(1),
+  price: z.coerce.number(),
 })
 
-export function NameForm(props: Props) {
+export function PriceForm(props: Props) {
   const { data, id } = props
 
   const [isEditing, setIsEditing] = useState<boolean>(false)
@@ -45,7 +45,8 @@ export function NameForm(props: Props) {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: data,
+    // @ts-expect-error
+    defaultValues: data.price,
   })
 
   const { isSubmitting, isValid } = form.formState
@@ -53,7 +54,7 @@ export function NameForm(props: Props) {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.patch(`/api/products/${id}`, values)
-      toast.success('Product updated successfullt')
+      toast.success('Product price updated successfullt')
       toggleEdit()
       router.refresh()
     } catch {
@@ -63,19 +64,19 @@ export function NameForm(props: Props) {
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Product name
+        Product price
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Cancel</>
           ) : (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Edit name
+              Edit price
             </>
           )}
         </Button>
       </div>
-      {!isEditing && <p className="text-sm mt-2">{data.name}</p>}
+      {!isEditing && <p className="text-sm mt-2">{data.price}</p>}
       {isEditing && (
         <Form {...form}>
           <form
@@ -84,13 +85,13 @@ export function NameForm(props: Props) {
           >
             <FormField
               control={form.control}
-              name="name"
+              name="price"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder="e.g. 'Crop top'"
+                      placeholder="e.g. '$40'"
                       {...field}
                     />
                   </FormControl>

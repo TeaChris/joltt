@@ -8,6 +8,7 @@ import { Actions } from '../_component/actions'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { NameForm } from '../_component/name-form'
+import { PriceForm } from '../_component/price-form'
 
 export default async function Page({
   params,
@@ -93,9 +94,12 @@ export default async function Page({
               </div>
             </div>
             <NameForm data={product} id={params.productId} />
+            <PriceForm data={product} id={params.productId} />
           </div>
         </div>
       </div>
     </div>
   )
 }
+
+//<ImageUpload productId={productId} initialData={product} />
