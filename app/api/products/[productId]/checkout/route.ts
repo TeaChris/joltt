@@ -86,6 +86,7 @@ export async function POST(
         productId: product.id,
         userId: userId,
         userEmail: user.email,
+        productPrice: product.price,
       },
     })
 

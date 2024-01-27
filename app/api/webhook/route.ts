@@ -25,6 +25,7 @@ export async function POST(req: Request) {
   const userId = session?.metadata?.userId
   const productId = session?.metadata?.productId
   const userEmail = session?.metadata?.userEmail
+  const price = session?.metadata?.productPrice
 
   if (event.type === 'checkout.session.completed') {
     if (!userId || !productId) {
@@ -35,10 +36,12 @@ export async function POST(req: Request) {
 
     await db.orders.create({
       data: {
-        productId: productId,
         userId: userId,
-        // @ts-ignore
+        productId: productId,
+        // @ts-expect-error
         userEmail: userEmail,
+        // @ts-ignore
+        price: price,
       },
     })
   } else {
