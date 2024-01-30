@@ -28,10 +28,7 @@ export function Cart() {
     setIsMounted(true)
   }, [])
 
-  const cartTotal = items.reduce(
-    (total, { product }) => total + product.price,
-    0
-  )
+  const cartTotal = items.reduce((total, product) => total + product.price, 0)
 
   const fee = 1
 
@@ -54,7 +51,7 @@ export function Cart() {
           <>
             <div className="flex w-full flex-col pr-6">
               <ScrollArea>
-                {items.map(({ product }) => (
+                {items.map((product) => (
                   <CartItem product={product} key={product.id} />
                 ))}
               </ScrollArea>

@@ -32,7 +32,7 @@ export default async function RootLayout({
           )}
         >
           <div className=""> {children}</div>
-          <Toaster richColors position="top-center" />
+          <Toaster richColors />
         </body>
       </html>
     </SessionProvider>
