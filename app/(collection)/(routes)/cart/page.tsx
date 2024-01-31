@@ -17,7 +17,7 @@ export default function Page() {
 
   const router = useRouter()
 
-  const productId = items.map(({ product }) => product.id)
+  const productId = items.map((product) => product.id)
 
   const [isMounted, setIsMounted] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -25,10 +25,7 @@ export default function Page() {
     setIsMounted(true)
   }, [])
 
-  const cartTotal = items.reduce(
-    (total, { product }) => total + product.price,
-    0
-  )
+  const cartTotal = items.reduce((total, product) => total + product.price, 0)
 
   const onClick = async () => {
     try {
@@ -86,7 +83,7 @@ export default function Page() {
               })}
             >
               {isMounted &&
-                items.map(({ product }) => {
+                items.map((product) => {
                   return (
                     <li key={product.id} className="flex py-6 sm:py-10">
                       <div className="flex-shrink-0">

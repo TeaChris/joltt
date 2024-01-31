@@ -16,7 +16,7 @@ enum UserRole {
   USER
 }
 
-enum  ProductStatus {
+enum  PayStatus {
   PENDING
   DELIVERED
 }
@@ -76,6 +76,7 @@ model Orders {
   id          String @id @default(uuid()) @map("_id")
   userId      String
   isPaid      Boolean
+  delivery    PayStatus @default(PENDING)
 
   phone       String @default("")
   address     String @default("")

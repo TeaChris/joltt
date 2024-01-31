@@ -11,6 +11,10 @@ const nav = [
     href: '/products',
   },
   {
+    label:'Your orders',
+    href:'/orders'
+  },
+  {
     label: 'Blog',
     href: '/blog',
   },
