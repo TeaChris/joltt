@@ -51,6 +51,8 @@ model Products {
 
   orders       Orders[]
 
+  orderItem   OrderItem[]
+
   @@index([categoryId])
   @@fulltext([name])
 }
@@ -73,16 +75,34 @@ expires DateTime
 model Orders {
   id          String @id @default(uuid()) @map("_id")
   userId      String
-  status      ProductStatus @default(PENDING)
+  isPaid      Boolean
+
+  phone       String @default("")
+  address     String @default("")
 
   productId   String
   product     Products @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  orderItem   OrderItem[]
 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt()
 
   @@unique([userId, productId])
   @@index([productId])
+}
+
+model OrderItem {
+id          String @id @default(uuid()) @map("_id")
+userId      String
+
+orderId     String
+order       Orders @relation(fields: [orderId], references: [id])
+
+productId   String
+products    Products @relation(fields: [productId], references: [id])
+
+@@index([orderId])
 }
 
 model StripeCustomer{
