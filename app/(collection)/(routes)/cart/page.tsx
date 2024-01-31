@@ -8,7 +8,7 @@ import axios from 'axios'
 import { Check, Loader2, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
@@ -16,14 +16,25 @@ export default function Page() {
   const { items, removeItem } = useCart()
 
   const router = useRouter()
-
-  const productId = items.map((product) => product.id)
+  const searchParams = useSearchParams()
 
   const [isMounted, setIsMounted] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(false)
+
   useEffect(() => {
     setIsMounted(true)
   }, [])
+
+  useEffect(() => {
+    if (searchParams.get('success')) {
+      toast.success('Payment completed')
+      router.push('/product/thank-you')
+    }
+
+    if (searchParams.get('canceled')) {
+      toast.error('Something went wrong, please try again')
+    }
+  }, [searchParams, removeItem, router])
 
   const cartTotal = items.reduce((total, product) => total + product.price, 0)
 
