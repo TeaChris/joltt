@@ -30,8 +30,10 @@ export default function Page() {
   const onClick = async () => {
     try {
       setIsLoading(true)
-      const reponse = await axios.post(`/api/products/${productId}/checkout`)
-      window.location.assign(reponse.data.url)
+      const response = await axios.post(`/api/checkout`, {
+        productIds: items.map((item) => item.id),
+      })
+      window.location = response.data.url
     } catch {
       toast.error('Something went wrong')
     } finally {
