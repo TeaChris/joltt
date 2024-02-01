@@ -48,6 +48,7 @@ model Products {
   category          Category? @relation(fields: [categoryId], references: [id])
 
   isPublished       Boolean @default(false)
+  isArchived        Boolean @default(false)
 
 
   orderItem   OrderItem[]
