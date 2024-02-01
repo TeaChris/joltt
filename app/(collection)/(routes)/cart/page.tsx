@@ -12,16 +12,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
-interface Props {
-  params: {
-    productId: string
-  }
-}
-
-export default function Page(props: Props) {
-  const { params } = props
-  const { productId } = params
-
+export default function Page() {
   const { items, removeItem } = useCart()
 
   const searchParams = useSearchParams()
@@ -48,7 +39,7 @@ export default function Page(props: Props) {
   const onClick = async () => {
     try {
       setIsLoading(true)
-      const response = await axios.post(`/api/products/${productId}/checkout`, {
+      const response = await axios.post(`/api/checkout`, {
         productIds: items.map((item) => item.id),
         productNames: items.map((item) => item.name),
         productPrice: items.map((item) => item.price),
