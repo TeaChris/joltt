@@ -50,8 +50,6 @@ export default function Page(props: Props) {
       setIsLoading(true)
       const response = await axios.post(`/api/products/${productId}/checkout`, {
         productIds: items.map((item) => item.id),
-        productNames: items.map((item) => item.name),
-        productPrice: items.map((item) => item.price),
       })
       window.location = response.data.url
     } catch {

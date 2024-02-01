@@ -75,6 +75,8 @@ model Orders {
   id          String @id @default(uuid()) @map("_id")
   userId      String
   isPaid      Boolean
+  name        String
+  price       Float
   delivery    PayStatus @default(PENDING)
 
   phone       String @default("")

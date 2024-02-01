@@ -35,7 +35,7 @@ export function Cart() {
 
   return (
     <Link
-      href="/auth/sign-up"
+      href="/cart"
       className={buttonVariants({
         variant: 'ghost',
         className: 'hover:bg-transparent',
