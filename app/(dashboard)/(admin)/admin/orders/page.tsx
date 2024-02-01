@@ -1,14 +1,15 @@
-import { MaxWidthWrapper } from '@/components/MaxWidthWrapper'
-import { currentUser, currentUserId } from '@/lib/auth'
+import { DataTable } from '@/components/data-table'
+import { currentRole, currentUserId } from '@/lib/auth'
 import { db } from '@/lib/db'
+import { UserRole } from '@prisma/client'
 import { redirect } from 'next/navigation'
 import { columns } from './_components/columns'
-import { DataTable } from '@/components/data-table'
-export default async function Page() {
-  const user = await currentUser()
-  const userId = await currentUserId()
 
-  if (!user) {
+export default async function Page() {
+  const userId = await currentUserId()
+  const role = await currentRole()
+
+  if (!userId || role !== UserRole.ADMIN) {
     return redirect('/')
   }
 
@@ -29,14 +30,9 @@ export default async function Page() {
   })
 
   return (
-    <>
-      <MaxWidthWrapper className="space-y-4 mt-8">
-        <h1 className="text-black text-3xl sm:text-4xl font-bold">
-          Your orders
-        </h1>
-
-        <DataTable data={orders} columns={columns} />
-      </MaxWidthWrapper>
-    </>
+    <div className="lg:p-6 space-x-4">
+      <h1 className="text-black text-3xl sm:text-4xl font-bold">All orders</h1>
+      <DataTable data={orders} columns={columns} />
+    </div>
   )
 }

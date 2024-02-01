@@ -11,7 +11,7 @@ export default async function Page() {
   }
   return (
     <MaxWidthWrapper className="my-10 sm:my-20">
-      <div className="w-1/2 mx-auto space-y-3 flex flex-col items-center">
+      <div className="w-full sm:w-1/2 mx-auto space-y-3 flex flex-col items-center">
         <Image
           src={'/thank-you.png'}
           alt="thank-you image"
