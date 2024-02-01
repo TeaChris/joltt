@@ -2,24 +2,25 @@
 
 import { Button } from '@/components/ui/button'
 import { useCart } from '@/hooks/use-cart'
+import { useCurrentUserId } from '@/hooks/use-current-id'
 import { formatPrice } from '@/lib/format-price'
 import { cn } from '@/lib/utils'
 import axios from 'axios'
 import { Check, Loader2, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { redirect, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
 export default function Page() {
-  const { items, removeItem } = useCart()
-
-  const searchParams = useSearchParams()
-
   const [isMounted, setIsMounted] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
+  const userId = useCurrentUserId()
+  const searchParams = useSearchParams()
+  const { items, removeItem } = useCart()
+  
   useEffect(() => {
     setIsMounted(true)
   }, [])
@@ -33,6 +34,10 @@ export default function Page() {
       toast.error('Something went wrong, please try again')
     }
   }, [searchParams, removeItem])
+
+  if (!userId) {
+    return redirect('/')
+  }
 
   const cartTotal = items.reduce((total, product) => total + product.price, 0)
 

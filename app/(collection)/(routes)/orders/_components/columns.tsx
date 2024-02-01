@@ -83,7 +83,7 @@ export const columns: ColumnDef<Orders>[] = [
       )
     },
     cell: ({ row }) => {
-      const delivery = row.getValue('delivery') || 'PENDING'
+      const delivery = row.getValue('PENDING') || false
 
       return (
         <Badge className={cn('bg-emerald-500', delivery && 'bg-amber-500')}>
