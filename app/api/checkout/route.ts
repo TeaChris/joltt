@@ -5,12 +5,15 @@ import { stripe } from '@/lib/stripe'
 import { db } from '@/lib/db'
 import { currentUserId } from '@/lib/auth'
 
-export async function POST(
-  req: Request,
-  { params }: { params: { productId: string } }
-) {
-  const { productIds } = await req.json()
+export async function POST(req: Request) {
+  const { productIds, productNames, productPrice } = await req.json()
   const userId = await currentUserId()
+
+  const name = productNames.join(', ')
+  const totalPrice = productPrice.reduce(
+    (acc: number, price: number) => acc + price,
+    0
+  )
 
   if (!productIds || productIds.length === 0) {
     return new NextResponse('Product ids are required', { status: 400 })
@@ -44,6 +47,8 @@ export async function POST(
       // @ts-ignore
       userId,
       isPaid: false,
+      name: name,
+      price: totalPrice,
       orderItem: {
         create: productIds.map((productId: string) => ({
           products: {
