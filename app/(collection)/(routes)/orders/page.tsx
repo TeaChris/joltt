@@ -1,9 +1,9 @@
-import { DataTable } from '@/app/(dashboard)/(admin)/admin/products/_components/data-table'
 import { MaxWidthWrapper } from '@/components/MaxWidthWrapper'
 import { currentUser, currentUserId } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { redirect } from 'next/navigation'
 import { columns } from './_components/columns'
+import { DataTable } from './_components/data-table'
 
 export default async function Page() {
   const user = await currentUser()
