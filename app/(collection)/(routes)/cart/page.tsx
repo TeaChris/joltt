@@ -15,7 +15,6 @@ import { toast } from 'sonner'
 export default function Page() {
   const { items, removeItem } = useCart()
 
-  const router = useRouter()
   const searchParams = useSearchParams()
 
   const [isMounted, setIsMounted] = useState<boolean>(false)
@@ -28,13 +27,12 @@ export default function Page() {
   useEffect(() => {
     if (searchParams.get('success')) {
       toast.success('Payment completed')
-      router.push('/product/thank-you')
     }
 
     if (searchParams.get('canceled')) {
       toast.error('Something went wrong, please try again')
     }
-  }, [searchParams, removeItem, router])
+  }, [searchParams, removeItem])
 
   const cartTotal = items.reduce((total, product) => total + product.price, 0)
 

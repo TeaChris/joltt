@@ -49,7 +49,6 @@ model Products {
 
   isPublished       Boolean @default(false)
 
-  orders       Orders[]
 
   orderItem   OrderItem[]
 
@@ -81,21 +80,17 @@ model Orders {
   phone       String @default("")
   address     String @default("")
 
-  productId   String
-  product     Products @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   orderItem   OrderItem[]
 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt()
 
-  @@unique([userId, productId])
-  @@index([productId])
+  @@unique([userId])
 }
 
 model OrderItem {
 id          String @id @default(uuid()) @map("_id")
-userId      String
 
 orderId     String
 order       Orders @relation(fields: [orderId], references: [id])
