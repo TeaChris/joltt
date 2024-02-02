@@ -15,7 +15,7 @@ export function Review(props: Props) {
   const { reviews } = props
   return (
     <div className="w-full flex flex-col gap-3">
-      {/* {reviews ? (
+      {reviews ? (
         reviews.map((r) => (
           <article
             key={r.id}
@@ -40,7 +40,7 @@ export function Review(props: Props) {
         <span className="text-sm font-medium">
           No review yet, be the first to post.
         </span>
-      )} */}
+      )}
     </div>
   )
 }
