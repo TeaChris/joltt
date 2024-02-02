@@ -35,7 +35,7 @@ export default function ReviewInput({
 
   const onSubmit = async (values: TReviewSchemaValidator) => {
     try {
-      const res = await axios.post(`/api/products/${productId}/review`, values)
+      await axios.post(`/api/products/${productId}/reviews`, values)
       toast.success('Product was successfully posted')
       form.reset()
       router.refresh()

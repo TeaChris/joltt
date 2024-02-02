@@ -96,6 +96,7 @@ export default async function Page({
             </div>
             <NameForm data={product} id={params.productId} />
             <PriceForm data={product} id={params.productId} />
+            {/* @ts-ignore */}
             <StockForm data={product} id={params.productId} />
           </div>
 

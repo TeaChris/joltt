@@ -8,7 +8,8 @@ import { formatPrice } from '@/lib/format-price'
 import { Check, Shield } from 'lucide-react'
 import Image from 'next/image'
 import { AddToCartButton } from '@/components/add-to-cart'
-import ReviewInput from '../_components/review-input'
+import { Review } from './_components/reviews'
+import { buttonVariants } from '@/components/ui/button'
 
 interface Props {
   params: {
@@ -45,6 +46,12 @@ export default async function Page(props: Props) {
   if (!product) {
     return redirect('/')
   }
+
+  const reviews = await db.review.findMany({
+    where: {
+      productId: params.productId,
+    },
+  })
 
   return (
     <MaxWidthWrapper className="bg-white">
@@ -154,9 +161,15 @@ export default async function Page(props: Props) {
             <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               Product Review
             </h1>
-            <div className="w-full h-72 bg-black"></div>
-            {/* @ts-ignore */}
-            <ReviewInput params={params.productId} />
+            <div className="w-full h-max">
+              <Review reviews={reviews} />
+            </div>
+            <Link
+              href={`/products/${params.productId}/reviews`}
+              className={buttonVariants({ variant: 'link' })}
+            >
+              Post a review
+            </Link>
           </div>
         </div>
       </div>
