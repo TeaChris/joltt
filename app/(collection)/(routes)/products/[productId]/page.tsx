@@ -8,6 +8,7 @@ import { formatPrice } from '@/lib/format-price'
 import { Check, Shield } from 'lucide-react'
 import Image from 'next/image'
 import { AddToCartButton } from '@/components/add-to-cart'
+import ReviewInput from '../_components/review-input'
 
 interface Props {
   params: {
@@ -47,7 +48,7 @@ export default async function Page(props: Props) {
 
   return (
     <MaxWidthWrapper className="bg-white">
-      <div className="bg-white">
+      <div className="bg-white space-y-3">
         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
           {/* Product Details */}
           <div className="lg:max-w-lg lg:self-end">
@@ -146,6 +147,16 @@ export default async function Page(props: Props) {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+        <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8 border-t">
+          <div className="space-y-3">
+            <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              Product Review
+            </h1>
+            <div className="w-full h-72 bg-black"></div>
+            {/* @ts-ignore */}
+            <ReviewInput params={params.productId} />
           </div>
         </div>
       </div>

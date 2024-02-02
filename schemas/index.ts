@@ -23,7 +23,7 @@ export const AuthCredentialsCreation = z.object({
 // product schema
 export const ProductSchemaValidator = z.object({
   name: z.string().min(5, {
-    message: 'Produuct name is required',
+    message: 'Product name is required',
   }),
   stock: z.coerce.number(),
   price: z.coerce.number(),
@@ -31,11 +31,19 @@ export const ProductSchemaValidator = z.object({
     message: 'Product size is required',
   }),
   description: z.string().min(10, {
-    message: 'Product desscritpion is required',
+    message: 'Product description is required',
   }),
   categoryId: z.string(),
+})
+
+// review schema
+export const ReviewSchemaValidator = z.object({
+  review: z.string().min(5, {
+    message: 'Review is required',
+  }),
 })
 
 export type TAuthCredentialsValidator = z.infer<typeof AuthCredentialsValidator>
 export type TAuthCredentialsCreation = z.infer<typeof AuthCredentialsCreation>
 export type TProductSchemaValidator = z.infer<typeof ProductSchemaValidator>
+export type TReviewSchemaValidator = z.infer<typeof ReviewSchemaValidator>

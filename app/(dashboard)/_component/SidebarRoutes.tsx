@@ -23,19 +23,9 @@ const adminRoutes = [
     href: '/admin/products',
   },
   {
-    icon: AppWindow,
-    label: 'Earning',
-    href: '/admin/earning',
-  },
-  {
     icon: Compass,
     label: 'Orders',
     href: '/admin/orders',
-  },
-  {
-    icon: Settings,
-    label: 'Settings',
-    href: '/admin/settings',
   },
 ]
 

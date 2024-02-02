@@ -52,6 +52,7 @@ model Products {
 
 
   orderItem   OrderItem[]
+  review      Review[]
 
   @@index([categoryId])
   @@fulltext([name])
@@ -64,12 +65,12 @@ model Category {
 }
 
 model VerificationToken {
-id      String @id @default(cuid()) @map("_id")
-email   String
-token   String @unique
-expires DateTime
+  id      String @id @default(cuid()) @map("_id")
+  email   String
+  token   String @unique
+  expires DateTime
 
-@@unique([email, token])
+  @@unique([email, token])
 }
 
 model Orders {
@@ -93,22 +94,37 @@ model Orders {
 }
 
 model OrderItem {
-id          String @id @default(uuid()) @map("_id")
+  id          String @id @default(uuid()) @map("_id")
 
-orderId     String
-order       Orders @relation(fields: [orderId], references: [id])
+  orderId     String
+  order       Orders @relation(fields: [orderId], references: [id])
 
-productId   String
-products    Products @relation(fields: [productId], references: [id])
+  productId   String
+  products    Products @relation(fields: [productId], references: [id])
 
-@@index([orderId])
+  @@index([orderId])
 }
 
-model StripeCustomer{
+model StripeCustomer {
   id                  String @id @default(uuid()) @map("_id")
   userId              String @unique
   stripeCustomerId    String @unique
 
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
+}
+
+model Review{
+  id          String @id @default(uuid()) @map("_id")
+  userId      String
+  review      String
+
+  productId   String
+  products    Products @relation(fields: [productId], references: [id])
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
+  @@unique([userId,productId])
 }
