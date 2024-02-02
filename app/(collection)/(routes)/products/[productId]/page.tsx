@@ -158,9 +158,15 @@ export default async function Page(props: Props) {
         </div>
         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8 border-t">
           <div className="space-y-3">
-            <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Product Review
-            </h1>
+            <div className="space-y-1">
+              <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                Product Review
+              </h1>
+              <span className="text-xs text-gray-500">
+                Please, refresh after posting a review
+              </span>
+            </div>
+
             <div className="w-full h-max">
               <Review reviews={reviews} />
             </div>
