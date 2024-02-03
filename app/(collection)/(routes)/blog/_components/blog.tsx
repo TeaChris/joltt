@@ -13,7 +13,7 @@ export default function Blog() {
         {blog.map((b) => (
           <article
             key={b.id}
-            className="w-full p-2 sm:w-80 border aspect-square rounded-lg space-y-2"
+            className="w-full p-2 sm:w-80 border aspect-square rounded-lg space-y-4 sm:space-y-2"
           >
             <div className="w-full flex items-center justify-between">
               <span className="text-sm text-neutral-500">{b.date}</span>
