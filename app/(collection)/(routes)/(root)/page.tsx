@@ -1,10 +1,13 @@
 import { getProducts } from '@/actions/get-products'
+
 import { MaxWidthWrapper } from '@/components/MaxWidthWrapper'
 import { Categories } from '@/components/categories'
 import { ProductList } from '@/components/product-list'
+
 import { Button, buttonVariants } from '@/components/ui/button'
-import { currentUserId } from '@/lib/auth'
+
 import { db } from '@/lib/db'
+import { currentUserId } from '@/lib/auth'
 
 import { ArrowDownToLine, CheckCircle, Leaf } from 'lucide-react'
 
@@ -15,13 +18,13 @@ const perks = [
     name: 'Instant Delivery',
     Icon: ArrowDownToLine,
     description:
-      'Get your assets delivered to your email in seconds and download them right away.',
+      'Get your order(s) delivered to your doorstep in few hours/days and have them right away.',
   },
   {
     name: 'Guaranteed Quality',
     Icon: CheckCircle,
     description:
-      'Every asset on our platform is verified by our team to ensure our highest quality standards. Not happy? We offer a 30-day refund guarantee.',
+      'Every product on our platform is verified by our team to ensure our highest quality standards. Not happy? We offer a 30-day refund guarantee.',
   },
   {
     name: 'For the Planet',
