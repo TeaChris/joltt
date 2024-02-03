@@ -26,7 +26,7 @@ export default function Blog() {
               {b.subtitle}
             </h2>
             <div className="space-y-2 w-full pl-4">
-              <ul className="space-y-1 text-sky-700 list-disc text-sm">
+              <ul className="space-y-2 sm:space-y-1 text-sky-700 list-disc text-sm">
                 <li>{b.features[1]}</li>
                 <li>{b.features[2]}</li>
                 <li>{b.features[3]}</li>
