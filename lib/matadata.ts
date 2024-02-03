@@ -21,7 +21,7 @@ export function constructMetadata({
       description,
       images: [
         {
-          url: image,
+          url: '/graph.png',
         },
       ],
     },
