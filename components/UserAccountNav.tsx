@@ -49,7 +49,7 @@ export default function UserAccountNav(props: Props) {
           {role === UserRole.ADMIN ? (
             <Link href={`/admin/product`}>Dashboard</Link>
           ) : (
-            <Link href={`/dashboard`}>Dashboard</Link>
+            <Link href={`/orders`}>Orders</Link>
           )}
         </DropdownMenuItem>
 

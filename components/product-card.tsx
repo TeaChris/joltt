@@ -1,12 +1,13 @@
 import { formatPrice } from '@/lib/format-price'
 import { Heart } from 'lucide-react'
+import { StaticImport } from 'next/dist/shared/lib/get-img-props'
 import Image from 'next/image'
 import Link from 'next/link'
 
 interface Props {
   id: string
   name: string
-  imageUrl: string | null
+  imageUrl: string | StaticImport
   price: number
 }
 
@@ -16,7 +17,12 @@ export function ProductCard({ id, name, imageUrl, price }: Props) {
       <div className="group hover:shadow-sm transition overflow-hidden rounded-lg p-3 h-full">
         <div className="relative w-full h-52 bg-muted flex items-center justify-center aspect-video rounded-md overflow-hidden">
           {/* @ts-ignore */}
-          <Image fill className="object-cover" alt={name} src={imageUrl} />
+          <Image
+            fill
+            className="object-cover"
+            alt="product image"
+            src={imageUrl}
+          />
         </div>
         <div className="flex justify-between items-center pt-2">
           <div className="flex flex-col pt-2">

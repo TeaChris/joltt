@@ -102,6 +102,10 @@ export async function Navbar() {
                     <Cart />
                   </div>
                 </div>
+
+                <div className="lg:hidden flex flex-1 justify-end">
+                  <Cart />
+                </div>
               </div>
             </div>
           </div>

@@ -21,10 +21,11 @@ export function ProductList({ items, title, subtitle, href }: Props) {
   const pathname = usePathname()
 
   // Shuffle the items randomly
-  const shuffledItems = [...items].sort(() => Math.random() - 0.5)
+  // const shuffledItems = [...items].sort(() => Math.random() - 0.5)
+  //  const randomItems = shuffledItems.slice(0, 4)
 
   // Take the first 4 items
-  const randomItems = shuffledItems.slice(0, 4)
+  const randomItems = items.slice(0, 4)
 
   return (
     <section className="py-12">
@@ -61,6 +62,7 @@ export function ProductList({ items, title, subtitle, href }: Props) {
                     key={item.id}
                     id={item.id}
                     name={item.name}
+                    // @ts-ignore
                     imageUrl={item.imageUrl}
                     price={item.price}
                   />
@@ -73,6 +75,7 @@ export function ProductList({ items, title, subtitle, href }: Props) {
                     key={item.id}
                     id={item.id}
                     name={item.name}
+                    // @ts-ignore
                     imageUrl={item.imageUrl}
                     price={item.price}
                   />

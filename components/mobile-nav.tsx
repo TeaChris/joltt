@@ -11,6 +11,9 @@ import { useEffect, useState } from 'react'
 import { Button, buttonVariants } from './ui/button'
 import { ExtendedUser } from '@/next-auth'
 import { logOut } from '@/actions/sign-out'
+import { useCurrentUser } from '@/hooks/use-current-user'
+import { useCurrentRole } from '@/hooks/use-current-role'
+import { UserRole } from '@prisma/client'
 
 const nav = [
   {
@@ -27,14 +30,12 @@ const nav = [
   },
 ]
 
-interface Props {
-  user?: ExtendedUser
-}
-
-export function MobileNav({ user }: Props) {
+export function MobileNav() {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   const pathname = usePathname()
+  const user = useCurrentUser()
+  const role = useCurrentRole()
 
   // whenever we click an item in the menu and navigate away, we want to close the menu
   useEffect(() => {
@@ -106,46 +107,64 @@ export function MobileNav({ user }: Props) {
                     </div>
                   </li>
                 ))}
+                {role === UserRole.ADMIN && (
+                  <li className="space-y-10 px-4 pb-8 pt-10">
+                    <div className="border-b border-gray-200">
+                      <div className="-mb-px flex">
+                        <Link
+                          onClick={() => closeOnCurrent('/admin/product')}
+                          href="/admin/product"
+                          className="border-transparent text-gray-900 flex-1 whitespace-nowrap border-b-2 py-2 text-base font-medium"
+                        >
+                          Dashboard
+                        </Link>
+                      </div>
+                    </div>
+                  </li>
+                )}
               </ul>
             </div>
-            {!user ? (
-              <div className="space-y-6 border-t border-gray-200 px-4 py-6">
-                <div className="flow-root">
-                  <Link
-                    onClick={() => closeOnCurrent('/sign-in')}
-                    href="/sign-in"
-                    className={buttonVariants({
-                      variant: 'outline',
-                      className: 'w-full -m-2 block',
-                    })}
-                  >
-                    Sign in
-                  </Link>
+
+            <>
+              {!user ? (
+                <div className="space-y-6 border-t border-gray-200 px-4 py-6">
+                  <div className="flow-root">
+                    <Link
+                      onClick={() => closeOnCurrent('/sign-in')}
+                      href="/sign-in"
+                      className={buttonVariants({
+                        variant: 'outline',
+                        className: 'w-full -m-2 block',
+                      })}
+                    >
+                      Sign in
+                    </Link>
+                  </div>
+                  <div className="flow-root">
+                    <Link
+                      onClick={() => closeOnCurrent('/sign-up')}
+                      href="/sign-up"
+                      className={buttonVariants({
+                        variant: 'outline',
+                        className: 'w-full -m-2 block',
+                      })}
+                    >
+                      Sign up
+                    </Link>
+                  </div>
                 </div>
-                <div className="flow-root">
-                  <Link
-                    onClick={() => closeOnCurrent('/sign-up')}
-                    href="/sign-up"
-                    className={buttonVariants({
-                      variant: 'outline',
-                      className: 'w-full -m-2 block',
-                    })}
-                  >
-                    Sign up
-                  </Link>
-                </div>
-              </div>
-            ) : (
-              <Button
-                onClick={onClick}
-                className={buttonVariants({
-                  variant: 'outline',
-                  className: 'w-full -m-2 block',
-                })}
-              >
-                Logout
-              </Button>
-            )}
+              ) : (
+                <Button
+                  onClick={onClick}
+                  className={buttonVariants({
+                    variant: 'outline',
+                    className: 'w-full -m-2 block text-neutral-950',
+                  })}
+                >
+                  Logout
+                </Button>
+              )}
+            </>
           </div>
         </div>
       </div>
