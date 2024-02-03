@@ -4,6 +4,7 @@ import { buttonVariants } from './ui/button'
 import { Cart } from './Cart'
 import UserAccountNav from './UserAccountNav'
 import { currentUser } from '@/lib/auth'
+import { MobileNav } from './mobile-nav'
 
 const nav = [
   {
@@ -11,8 +12,8 @@ const nav = [
     href: '/products',
   },
   {
-    label:'Your orders',
-    href:'/orders'
+    label: 'Your orders',
+    href: '/orders',
   },
   {
     label: 'Blog',
@@ -28,7 +29,8 @@ export async function Navbar() {
         <MaxWidthWrapper>
           <div className="border-b border-gray-200">
             <div className="flex h-16 items-center">
-              {/* TODO: ADD MOBILE NAV */}
+              <MobileNav />
+
               <div className="ml-4 flex lg:ml-0">
                 <Link href="/" className="text-2xl font-extrabold text-primary">
                   jolt.
