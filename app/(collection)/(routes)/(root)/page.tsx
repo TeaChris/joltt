@@ -78,6 +78,7 @@ export default async function Home({ searchParams }: Props) {
           </div>
 
           <ProductList
+            // @ts-ignore
             items={products}
             title="Top picks for you"
             href="/products"

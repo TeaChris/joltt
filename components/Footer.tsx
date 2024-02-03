@@ -38,7 +38,7 @@ export function Footer() {
                     If you&apos;d like to shop high-quality collections, you can
                     do so in minutes.{' '}
                     <Link
-                      href="/product"
+                      href="/products"
                       className="whitespace-nowrap font-medium text-black hover:text-zinc-900"
                     >
                       Get started &rarr;
