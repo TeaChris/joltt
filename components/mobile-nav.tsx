@@ -79,7 +79,7 @@ export function MobileNav() {
 
       <div className="fixed overflow-y-scroll overscroll-y-none inset-0 z-40 flex">
         <div className="w-4/5">
-          <div className="relative flex w-full max-w-sm flex-col overflow-y-auto bg-white pb-12 shadow-xl">
+          <div className="relative h-screen flex w-full max-w-sm flex-col overflow-y-auto bg-white pb-12 shadow-xl">
             <div className="flex px-4 pb-2 pt-5">
               <button
                 type="button"
