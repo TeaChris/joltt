@@ -55,14 +55,14 @@ export default function BlogId({ post }: Props) {
           <p className="text-base leading-7 text-balance tracking-wide">
             <Balancer>{post?.description[1].desc}</Balancer>
           </p>
-          <Image
+          {/* <Image
             // @ts-ignore
             src={post?.description[1].image}
             alt="desc image"
             width={2000}
             height={2000}
             className="w-full h-96 sm:h-[40rem] object-cover"
-          />
+          /> */}
         </div>
       </div>
 
@@ -72,14 +72,14 @@ export default function BlogId({ post }: Props) {
         <p className="text-base leading-7 text-balance tracking-wide">
           <Balancer>{post?.description[2].desc}</Balancer>
         </p>
-        <Image
+        {/* <Image
           // @ts-ignore
           src={post?.description[2].image}
           alt="desc image"
           width={2000}
           height={2000}
           className="w-full h-96 sm:h-[40rem] object-cover"
-        />
+        /> */}
       </div>
 
       <Separator />
@@ -88,14 +88,14 @@ export default function BlogId({ post }: Props) {
         <p className="text-base leading-7 text-balance tracking-wide">
           <Balancer>{post?.description[3].desc}</Balancer>
         </p>
-        <Image
+        {/* <Image
           // @ts-ignore
           src={post?.description[3].image}
           alt="desc image"
           width={2000}
           height={2000}
           className="w-full h-96 sm:h-[40rem] object-cover"
-        />
+        /> */}
       </div>
     </>
   )
