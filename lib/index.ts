@@ -10,7 +10,7 @@ type Blog = {
 export const blog = [
   {
     id: 'fghjklmjjuujgjbklmllkjhgfcbnm-jhcbnmnvcz',
-    date: 'February 3, 2024',
+    date: 'Saturday, February 3rd 2024',
     title: 'Jolt Collections',
     subtitle: 'An app for seamless online experience',
     link: 'https://jolttcollections.vercel.app',
@@ -28,17 +28,16 @@ export const blog = [
       1: {
         title: 'Enhance User Security and Access Control',
         desc: 'Authentication and authorization are the cornerstone of any modern e-commerce platform, providing users with a secure and personalized experience. Authentication ensures that users are who they claim to be, while authorization determines what actions they can perform based on their role and permissions. With robust authentication mechanisms in place, such as email verification and password hashing, users can securely sign up, sign in, and manage their accounts. This builds trust and confidence among users, knowing that their sensitive information is protected. Authorization, on the other hand, empowers administrators to control access to different parts of the platform. By assigning roles and permissions, administrators can tailor the user experience and restrict unauthorized actions. For example, only administrators may have access to the admin panel, while regular users can only view and manage their own orders and profile settings. In summary, authentication and authorization work hand in hand to safeguard user accounts, protect sensitive data, and ensure a seamless and secure user experience.',
-        image: '',
+        image: '/1.png',
       },
       2: {
         title: 'Simplify Shopping with Intuitive Cart Management',
         desc: "Imagine a shopping experience where adding, removing, and updating items in your cart is as effortless as browsing the aisles of your favorite store. That's precisely what seamless cart management offers—an intuitive and streamlined way for users to manage their shopping carts. Whether you're browsing through products or making a purchasing decision, the cart is always there to accommodate your needs. With just a few clicks or taps, users can add items to their cart, adjust quantities, and even remove items they no longer need. But it doesn't stop there. Seamless cart management goes beyond basic functionalities to provide a rich and dynamic experience. It calculates the total price of items in the cart, including taxes and shipping costs, and displays clear summaries for easy reference. Plus, it remembers your cart contents across sessions, so you can pick up right where you left off, even if you switch devices. In essence, seamless cart management is the unsung hero of the e-commerce world, silently working behind the scenes to ensure a smooth and enjoyable shopping journey for every user.",
-        image: '',
+        image: '/2.png',
       },
       3: {
         title: 'Stay Informed Every Step of the Way',
         desc: "Order tracking is like having a personal assistant for your online purchases, keeping you informed and updated on the status of your orders from start to finish. Gone are the days of uncertainty and guesswork—now you can track your orders in real-time, right from the moment you click 'buy' until they arrive at your doorstep.The journey begins with an order confirmation, providing reassurance that your purchase was successful and your items are on their way. As your order progresses through various stages, such as processing, packaging, and shipping, you receive timely updates and notifications, keeping you informed every step of the way. But order tracking isn't just about knowing where your package is—it's also about managing expectations and addressing any concerns that may arise. If there are delays or issues with your order, you'll be the first to know, allowing you to take appropriate action and reach out to customer support if needed. In a world where instant gratification is the norm, order tracking offers peace of mind and confidence, ensuring that your online shopping experience is as smooth and stress-free as possible.",
-        image: '',
       },
       4: {
         title: 'Seamless Payment Processing for Secure Transactions',
