@@ -97,6 +97,70 @@ export default function BlogId({ post }: Props) {
           className="w-full h-96 sm:h-[40rem] object-cover"
         /> */}
       </div>
+
+      <Separator />
+      <div className="space-y-2">
+        <h2 className="text-2xl font-bold">{post?.description[4].title}</h2>
+        <p className="text-base leading-7 text-balance tracking-wide">
+          <Balancer>{post?.description[4].desc}</Balancer>
+        </p>
+        {/* <Image
+          // @ts-ignore
+          src={post?.description[3].image}
+          alt="desc image"
+          width={2000}
+          height={2000}
+          className="w-full h-96 sm:h-[40rem] object-cover"
+        /> */}
+      </div>
+
+      <Separator />
+      <div className="space-y-2">
+        <h2 className="text-2xl font-bold">{post?.description[5].title}</h2>
+        <p className="text-base leading-7 text-balance tracking-wide">
+          <Balancer>{post?.description[5].desc}</Balancer>
+        </p>
+        {/* <Image
+          // @ts-ignore
+          src={post?.description[3].image}
+          alt="desc image"
+          width={2000}
+          height={2000}
+          className="w-full h-96 sm:h-[40rem] object-cover"
+        /> */}
+      </div>
+
+      <Separator />
+      <div className="space-y-2">
+        <h2 className="text-2xl font-bold">{post?.description[6].title}</h2>
+        <p className="text-base leading-7 text-balance tracking-wide">
+          <Balancer>{post?.description[6].desc}</Balancer>
+        </p>
+        {/* <Image
+          // @ts-ignore
+          src={post?.description[3].image}
+          alt="desc image"
+          width={2000}
+          height={2000}
+          className="w-full h-96 sm:h-[40rem] object-cover"
+        /> */}
+      </div>
+
+      <Separator />
+      <div className="space-y-2">
+        <h2 className="text-2xl font-bold">{post?.description[7].title}</h2>
+        <p className="text-base leading-7 text-balance tracking-wide">
+          <Balancer>{post?.description[7].desc}</Balancer>
+        </p>
+        {/* <Image
+          // @ts-ignore
+          src={post?.description[3].image}
+          alt="desc image"
+          width={2000}
+          height={2000}
+          className="w-full h-96 sm:h-[40rem] object-cover"
+        /> */}
+      </div>
     </>
   )
 }
