@@ -22,7 +22,7 @@ interface Props {
         description: {
           1: { title: string; desc: string; image: string }
           2: { title: string; desc: string; image: string }
-          3: { title: string; desc: string }
+          3: { title: string; desc: string; image: string }
           4: { title: string; desc: string; image: string }
           5: { title: string; desc: string; image: string }
           6: { title: string; desc: string; image: string }
@@ -88,6 +88,14 @@ export default function BlogId({ post }: Props) {
         <p className="text-base leading-7 text-balance tracking-wide">
           <Balancer>{post?.description[3].desc}</Balancer>
         </p>
+        <Image
+          // @ts-ignore
+          src={post?.description[3].image}
+          alt="desc image"
+          width={2000}
+          height={2000}
+          className="w-full h-96 sm:h-[40rem] object-cover"
+        />
       </div>
     </>
   )

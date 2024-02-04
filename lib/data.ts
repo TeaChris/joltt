@@ -1,6 +1,6 @@
-import one from '@/public/one.png'
-import two from '@/public/two.png'
-import three from '@/public/three.png'
+import one from '../public/one.png'
+import two from '../public/two.png'
+import three from '../public/three.png'
 
 export const blog = [
   {
@@ -33,6 +33,7 @@ export const blog = [
       3: {
         title: 'Stay Informed Every Step of the Way',
         desc: "Order tracking is like having a personal assistant for your online purchases, keeping you informed and updated on the status of your orders from start to finish. Gone are the days of uncertainty and guesswork—now you can track your orders in real-time, right from the moment you click 'buy' until they arrive at your doorstep.The journey begins with an order confirmation, providing reassurance that your purchase was successful and your items are on their way. As your order progresses through various stages, such as processing, packaging, and shipping, you receive timely updates and notifications, keeping you informed every step of the way. But order tracking isn't just about knowing where your package is—it's also about managing expectations and addressing any concerns that may arise. If there are delays or issues with your order, you'll be the first to know, allowing you to take appropriate action and reach out to customer support if needed. In a world where instant gratification is the norm, order tracking offers peace of mind and confidence, ensuring that your online shopping experience is as smooth and stress-free as possible.",
+        image: three,
       },
       4: {
         title: 'Seamless Payment Processing for Secure Transactions',
