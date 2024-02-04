@@ -1,6 +1,6 @@
 import { buttonVariants } from '@/components/ui/button'
 
-import { blog } from '@/lib'
+import { blog } from '@/lib/data'
 
 import { User } from 'lucide-react'
 

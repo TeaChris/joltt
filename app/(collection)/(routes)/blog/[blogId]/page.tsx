@@ -2,7 +2,7 @@ import { MaxWidthWrapper } from '@/components/MaxWidthWrapper'
 import { buttonVariants } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 
-import { blog } from '@/lib'
+import { blog } from '@/lib/data'
 import { cn } from '@/lib/utils'
 import { User } from 'lucide-react'
 
