@@ -1,6 +1,3 @@
-import one from '@/public/one.png'
-import two from '@/public/two.png'
-
 export const blog = [
   {
     id: 'fghjklmjjuujgjbklmllkjhgfcbnm-jhcbnmnvcz',
@@ -22,12 +19,12 @@ export const blog = [
       1: {
         title: 'Enhance User Security and Access Control',
         desc: 'Authentication and authorization are the cornerstone of any modern e-commerce platform, providing users with a secure and personalized experience. Authentication ensures that users are who they claim to be, while authorization determines what actions they can perform based on their role and permissions. With robust authentication mechanisms in place, such as email verification and password hashing, users can securely sign up, sign in, and manage their accounts. This builds trust and confidence among users, knowing that their sensitive information is protected. Authorization, on the other hand, empowers administrators to control access to different parts of the platform. By assigning roles and permissions, administrators can tailor the user experience and restrict unauthorized actions. For example, only administrators may have access to the admin panel, while regular users can only view and manage their own orders and profile settings. In summary, authentication and authorization work hand in hand to safeguard user accounts, protect sensitive data, and ensure a seamless and secure user experience.',
-        image: one,
+        image: '/one/png',
       },
       2: {
         title: 'Simplify Shopping with Intuitive Cart Management',
         desc: "Imagine a shopping experience where adding, removing, and updating items in your cart is as effortless as browsing the aisles of your favorite store. That's precisely what seamless cart management offers—an intuitive and streamlined way for users to manage their shopping carts. Whether you're browsing through products or making a purchasing decision, the cart is always there to accommodate your needs. With just a few clicks or taps, users can add items to their cart, adjust quantities, and even remove items they no longer need. But it doesn't stop there. Seamless cart management goes beyond basic functionalities to provide a rich and dynamic experience. It calculates the total price of items in the cart, including taxes and shipping costs, and displays clear summaries for easy reference. Plus, it remembers your cart contents across sessions, so you can pick up right where you left off, even if you switch devices. In essence, seamless cart management is the unsung hero of the e-commerce world, silently working behind the scenes to ensure a smooth and enjoyable shopping journey for every user.",
-        image: two,
+        image: '/two.png',
       },
       3: {
         title: 'Stay Informed Every Step of the Way',
@@ -36,7 +33,7 @@ export const blog = [
       4: {
         title: 'Seamless Payment Processing for Secure Transactions',
         desc: "Stripe integration revolutionizes the payment experience for both merchants and customers, offering a seamless and secure way to process transactions online. As a leading payment gateway, Stripe provides a robust set of tools and APIs that empower e-commerce platforms to accept payments from customers worldwide. With Stripe integration, merchants can offer a wide range of payment options to their customers, including credit cards, debit cards, and digital wallets. This flexibility not only improves conversion rates but also enhances the overall shopping experience, catering to diverse customer preferences. From a security standpoint, Stripe takes the lead with its advanced fraud detection capabilities and compliance with industry standards such as PCI-DSS. This means that sensitive payment information is handled with the utmost care, giving customers peace of mind knowing that their data is safe and secure. In addition to payment processing, Stripe integration offers features such as subscription billing, recurring payments, and customizable checkout experiences, allowing merchants to tailor their payment flows to suit their business needs. Whether it's one-time purchases or subscription-based services, Stripe has you covered every step of the way.",
-        image: two,
+        image: '/three.png',
       },
       5: {
         title: 'Empower Customers with Voice and Feedback',
