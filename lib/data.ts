@@ -1,6 +1,6 @@
-import one from '../public/one.png'
-import two from '../public/two.png'
-import three from '../public/three.png'
+// import one from '../public/one.png'
+// import two from '../public/two.png'
+// import three from '../public/three.png'
 
 export const blog = [
   {
@@ -23,22 +23,22 @@ export const blog = [
       1: {
         title: 'Enhance User Security and Access Control',
         desc: 'Authentication and authorization are the cornerstone of any modern e-commerce platform, providing users with a secure and personalized experience. Authentication ensures that users are who they claim to be, while authorization determines what actions they can perform based on their role and permissions. With robust authentication mechanisms in place, such as email verification and password hashing, users can securely sign up, sign in, and manage their accounts. This builds trust and confidence among users, knowing that their sensitive information is protected. Authorization, on the other hand, empowers administrators to control access to different parts of the platform. By assigning roles and permissions, administrators can tailor the user experience and restrict unauthorized actions. For example, only administrators may have access to the admin panel, while regular users can only view and manage their own orders and profile settings. In summary, authentication and authorization work hand in hand to safeguard user accounts, protect sensitive data, and ensure a seamless and secure user experience.',
-        image: one,
+        image: '',
       },
       2: {
         title: 'Simplify Shopping with Intuitive Cart Management',
         desc: "Imagine a shopping experience where adding, removing, and updating items in your cart is as effortless as browsing the aisles of your favorite store. That's precisely what seamless cart management offers—an intuitive and streamlined way for users to manage their shopping carts. Whether you're browsing through products or making a purchasing decision, the cart is always there to accommodate your needs. With just a few clicks or taps, users can add items to their cart, adjust quantities, and even remove items they no longer need. But it doesn't stop there. Seamless cart management goes beyond basic functionalities to provide a rich and dynamic experience. It calculates the total price of items in the cart, including taxes and shipping costs, and displays clear summaries for easy reference. Plus, it remembers your cart contents across sessions, so you can pick up right where you left off, even if you switch devices. In essence, seamless cart management is the unsung hero of the e-commerce world, silently working behind the scenes to ensure a smooth and enjoyable shopping journey for every user.",
-        image: two,
+        image: '',
       },
       3: {
         title: 'Stay Informed Every Step of the Way',
         desc: "Order tracking is like having a personal assistant for your online purchases, keeping you informed and updated on the status of your orders from start to finish. Gone are the days of uncertainty and guesswork—now you can track your orders in real-time, right from the moment you click 'buy' until they arrive at your doorstep.The journey begins with an order confirmation, providing reassurance that your purchase was successful and your items are on their way. As your order progresses through various stages, such as processing, packaging, and shipping, you receive timely updates and notifications, keeping you informed every step of the way. But order tracking isn't just about knowing where your package is—it's also about managing expectations and addressing any concerns that may arise. If there are delays or issues with your order, you'll be the first to know, allowing you to take appropriate action and reach out to customer support if needed. In a world where instant gratification is the norm, order tracking offers peace of mind and confidence, ensuring that your online shopping experience is as smooth and stress-free as possible.",
-        image: three,
+        image: '',
       },
       4: {
         title: 'Seamless Payment Processing for Secure Transactions',
         desc: "Stripe integration revolutionizes the payment experience for both merchants and customers, offering a seamless and secure way to process transactions online. As a leading payment gateway, Stripe provides a robust set of tools and APIs that empower e-commerce platforms to accept payments from customers worldwide. With Stripe integration, merchants can offer a wide range of payment options to their customers, including credit cards, debit cards, and digital wallets. This flexibility not only improves conversion rates but also enhances the overall shopping experience, catering to diverse customer preferences. From a security standpoint, Stripe takes the lead with its advanced fraud detection capabilities and compliance with industry standards such as PCI-DSS. This means that sensitive payment information is handled with the utmost care, giving customers peace of mind knowing that their data is safe and secure. In addition to payment processing, Stripe integration offers features such as subscription billing, recurring payments, and customizable checkout experiences, allowing merchants to tailor their payment flows to suit their business needs. Whether it's one-time purchases or subscription-based services, Stripe has you covered every step of the way.",
-        image: three,
+        image: '',
       },
       5: {
         title: 'Empower Customers with Voice and Feedback',
