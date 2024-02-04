@@ -6,7 +6,7 @@ import { blog } from '@/lib'
 import { cn } from '@/lib/utils'
 import { User } from 'lucide-react'
 
-import {lazy,Suspense} from 'react'
+import { lazy, Suspense } from 'react'
 
 const LazyBlog = lazy(() => import('../_components/blog-id'))
 
@@ -62,7 +62,8 @@ export default function Page({ params }: { params: { blogId: string } }) {
           <Separator />
 
           <Suspense fallback={<div>Loading</div>}>
-            <LazyBlog post={post}/>
+            {/* @ts-ignore */}
+            <LazyBlog post={post} />
           </Suspense>
         </div>
       </div>
